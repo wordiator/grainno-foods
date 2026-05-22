@@ -16,7 +16,7 @@ $deploy = '/home/freehtbn/grainnofoods.com';
 $output = [];
 exec("cd $repo && git pull origin main 2>&1", $output);
 exec("cp -R $repo/. $deploy/ 2>&1", $output);
-exec("rm -rf $deploy/.git $deploy/deploy-webhook.php 2>&1", $output);
+exec("rm -rf $deploy/.git 2>&1", $output);
 
 http_response_code(200);
 echo implode("\n", $output);
