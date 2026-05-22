@@ -18,12 +18,37 @@
     }
 
     /* ============================================================
+       SCROLL REVEAL (INTERSECTION OBSERVER)
+       ============================================================ */
+    function initReveal() {
+        if (!('IntersectionObserver' in window)) {
+            // Fallback: show all elements immediately
+            document.querySelectorAll('.gf-reveal').forEach(function (el) {
+                el.classList.add('visible');
+            });
+            return;
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.gf-reveal').forEach(function (el) {
+            observer.observe(el);
+        });
+    }
+
+    /* ============================================================
        FLOATING CART TOGGLE
        ============================================================ */
     $(document).on('click', '#gf-cart-toggle', function (e) {
         e.stopPropagation();
-        var panel = $('#gf-cart-panel');
-        panel.toggleClass('open');
+        $('#gf-cart-panel').toggleClass('open');
     });
 
     $(document).on('click', function (e) {
@@ -46,13 +71,11 @@
     /* ============================================================
        AFTER ADD TO CART (AJAX)
        ============================================================ */
-    $(document.body).on('added_to_cart', function (e, fragments, hash, button) {
-        // Show floating cart panel
+    $(document.body).on('added_to_cart', function () {
         setTimeout(function () {
             $('#gf-cart-panel').addClass('open');
         }, 300);
 
-        // Refresh cart data
         $.ajax({
             url: grainnoCart.ajaxUrl,
             type: 'POST',
@@ -70,7 +93,7 @@
     /* ============================================================
        ACCORDION
        ============================================================ */
-    $(document).on('click', '.gf-accordion__trigger', function () {
+    $(document).on('click', '.gf-accordion__btn', function () {
         var acc = $(this).closest('.gf-accordion');
         acc.toggleClass('open');
         $(this).attr('aria-expanded', acc.hasClass('open'));
@@ -84,29 +107,21 @@
         if (mainBtn.length) {
             $(window).on('scroll', function () {
                 var btnOffset = mainBtn.offset().top + mainBtn.outerHeight();
-                var scrollTop = $(window).scrollTop() + $(window).height();
-                var sticky    = $('#gf-sticky-atc');
-                if ($(window).scrollTop() > btnOffset) {
-                    sticky.addClass('visible');
-                } else {
-                    sticky.removeClass('visible');
-                }
+                $('#gf-sticky-atc').toggleClass('visible', $(window).scrollTop() > btnOffset);
             });
         }
     }
 
     /* ============================================================
-       VARIANT PILL SELECTOR (VISUAL ENHANCEMENT)
-       Override WooCommerce select with pill buttons
+       VARIANT PILL SELECTOR
+       Replace WooCommerce dropdowns with visual pill buttons
        ============================================================ */
     function buildVariantPills() {
         $('.variations select').each(function () {
-            var $select  = $(this);
-            var $row     = $select.closest('tr');
-            var label    = $row.find('label').text().trim();
-            var existing = $row.find('.gf-variant-pills');
+            var $select = $(this);
+            var $row    = $select.closest('tr');
 
-            if (existing.length) return;
+            if ($row.find('.gf-variant-pills').length) return;
 
             var $pills = $('<div class="gf-variant-pills"></div>');
             $select.find('option').each(function () {
@@ -122,10 +137,8 @@
                 $pills.append($pill);
             });
 
-            $select.hide();
-            $select.after($pills);
+            $select.hide().after($pills);
 
-            // Sync when WooCommerce resets
             $select.on('change', function () {
                 var cur = $(this).val();
                 $pills.find('.gf-variant-pill').removeClass('active');
@@ -135,9 +148,21 @@
     }
 
     /* ============================================================
+       SMOOTH SCROLL FOR ANCHOR LINKS
+       ============================================================ */
+    $(document).on('click', 'a[href^="#"]', function (e) {
+        var target = $($(this).attr('href'));
+        if (target.length) {
+            e.preventDefault();
+            $('html, body').animate({ scrollTop: target.offset().top - 80 }, 600);
+        }
+    });
+
+    /* ============================================================
        INIT
        ============================================================ */
     $(document).ready(function () {
+        initReveal();
         updateWAButton();
         buildVariantPills();
     });

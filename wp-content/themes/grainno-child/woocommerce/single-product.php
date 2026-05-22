@@ -18,27 +18,27 @@ while (have_posts()) :
     $img         = get_the_post_thumbnail_url(get_the_ID(), 'large');
 ?>
 
-<div class="gf-single-product">
+<div class="gf-single">
 
     <!-- Gallery -->
-    <div class="gf-product-gallery">
+    <div class="gf-single__gallery">
         <?php if ($img) : ?>
             <img src="<?php echo esc_url($img); ?>" alt="<?php the_title_attribute(); ?>">
         <?php else : ?>
-            <div style="aspect-ratio:1/1;background:var(--gf-dark-card);border-radius:16px;border:1px solid var(--gf-border);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.2);">No image yet</div>
+            <div style="aspect-ratio:1/1;background:var(--gf-card);border-radius:20px;border:1px solid var(--gf-border);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:3rem;">🌾</div>
         <?php endif; ?>
     </div>
 
     <!-- Info -->
-    <div class="gf-product-info">
+    <div class="gf-single__info">
         <?php if ($cat_name) : ?>
-            <div class="gf-product-info__category"><?php echo esc_html($cat_name); ?></div>
+            <div class="gf-single__badge"><?php echo esc_html($cat_name); ?></div>
         <?php endif; ?>
 
-        <h1 class="gf-product-info__title"><?php the_title(); ?></h1>
+        <h1 class="gf-single__title"><?php the_title(); ?></h1>
 
         <?php if ($tagline) : ?>
-            <p class="gf-product-info__tagline"><?php echo esc_html($tagline); ?></p>
+            <p class="gf-single__tagline"><?php echo esc_html($tagline); ?></p>
         <?php endif; ?>
 
         <!-- Macro pills -->
@@ -68,19 +68,27 @@ while (have_posts()) :
                         <span class="gf-macro__label">Fat</span>
                     </div>
                 <?php endif; ?>
-                <div class="gf-macro" style="min-width:100px;">
-                    <span class="gf-macro__val" style="font-size:0.75rem;color:rgba(253,250,245,0.4);">per 100g</span>
+                <div class="gf-macro">
+                    <span class="gf-macro__val" style="font-size:0.7rem;color:var(--gf-muted);">per 100g</span>
                     <span class="gf-macro__label">serving</span>
                 </div>
             </div>
         <?php endif; ?>
 
         <!-- Price -->
-        <div class="gf-product-price"><?php echo $product->get_price_html(); ?></div>
+        <div class="gf-price"><?php echo $product->get_price_html(); ?></div>
 
-        <!-- WooCommerce add to cart form (variant selector styled) -->
-        <div class="gf-atc-form">
+        <!-- WooCommerce add to cart -->
+        <div style="margin-bottom:24px;">
             <?php woocommerce_template_single_add_to_cart(); ?>
+        </div>
+
+        <!-- Trust pills -->
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;">
+            <span class="gf-pill gf-pill--orange">🇳🇬 Nigerian Ingredients</span>
+            <span class="gf-pill gf-pill--white">No Chemicals</span>
+            <span class="gf-pill gf-pill--white">No Side Effects</span>
+            <span class="gf-pill gf-pill--green">NAFDAC Registered</span>
         </div>
 
         <!-- Ingredients accordion -->
@@ -88,9 +96,9 @@ while (have_posts()) :
             $ing_list = array_map('trim', explode(',', $ingredients));
         ?>
             <div class="gf-accordion" id="gf-acc-ingredients">
-                <button class="gf-accordion__trigger" aria-expanded="false">Ingredients</button>
+                <button class="gf-accordion__btn" aria-expanded="false">Ingredients</button>
                 <div class="gf-accordion__body">
-                    <ul class="gf-ingredient-list">
+                    <ul class="gf-ing-list">
                         <?php foreach ($ing_list as $ing) : ?>
                             <li><?php echo esc_html($ing); ?></li>
                         <?php endforeach; ?>
@@ -102,28 +110,20 @@ while (have_posts()) :
         <!-- Description accordion -->
         <?php if (get_the_content()) : ?>
             <div class="gf-accordion" id="gf-acc-desc">
-                <button class="gf-accordion__trigger" aria-expanded="false">Product Details</button>
+                <button class="gf-accordion__btn" aria-expanded="false">Product Details</button>
                 <div class="gf-accordion__body">
                     <?php the_content(); ?>
                 </div>
             </div>
         <?php endif; ?>
-
-        <!-- Trust pills -->
-        <div class="gf-benefit-pills" style="margin-top:20px;">
-            <span class="gf-pill">🇳🇬 Nigerian Ingredients</span>
-            <span class="gf-pill">No Chemicals</span>
-            <span class="gf-pill">No Side Effects</span>
-            <span class="gf-pill">NAFDAC Registered</span>
-        </div>
     </div>
 </div>
 
 <!-- Sticky ATC bar (mobile) -->
 <div class="gf-sticky-atc" id="gf-sticky-atc">
     <span class="gf-sticky-atc__name"><?php the_title(); ?></span>
-    <span style="font-weight:700;color:var(--gf-orange);"><?php echo $product->get_price_html(); ?></span>
-    <button class="btn-primary" onclick="document.querySelector('.single_add_to_cart_button')?.click()" style="white-space:nowrap;padding:12px 20px;">Add to Cart</button>
+    <span class="gf-sticky-atc__price"><?php echo $product->get_price_html(); ?></span>
+    <button class="gf-btn gf-btn-primary" onclick="document.querySelector('.single_add_to_cart_button')?.click()" style="white-space:nowrap;padding:12px 20px;font-size:0.9rem;">Add to Cart</button>
 </div>
 
 <?php
