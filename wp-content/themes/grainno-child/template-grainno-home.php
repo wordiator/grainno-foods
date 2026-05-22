@@ -12,6 +12,33 @@ $hero_sub       = get_theme_mod('grainno_hero_sub', "You eat well but nothing st
 
 $muscle_fuel = get_page_by_path('muscle-fuel-meal', OBJECT, 'product');
 $tom_brown   = get_page_by_path('complete-tom-brown', OBJECT, 'product');
+
+// Pre-fetch product data
+function grainno_get_product_data($p) {
+    if (!$p) return null;
+    $wc = wc_get_product($p->ID);
+    if (!$wc) return null;
+    $ingredients = get_post_meta($p->ID, '_grainno_ingredients', true);
+    return [
+        'id'          => $p->ID,
+        'wc'          => $wc,
+        'title'       => $p->post_title,
+        'tagline'     => get_post_meta($p->ID, '_grainno_tagline', true),
+        'protein'     => get_post_meta($p->ID, '_grainno_protein', true),
+        'calories'    => get_post_meta($p->ID, '_grainno_calories', true),
+        'carbs'       => get_post_meta($p->ID, '_grainno_carbs', true),
+        'fat'         => get_post_meta($p->ID, '_grainno_fat', true),
+        'ingredients' => $ingredients ? array_map('trim', explode(',', $ingredients)) : [],
+        'description' => get_post_field('post_content', $p->ID),
+        'img'         => get_the_post_thumbnail_url($p->ID, 'large'),
+        'img_med'     => get_the_post_thumbnail_url($p->ID, 'medium_large'),
+        'link'        => get_permalink($p->ID),
+        'price'       => $wc->get_price_html(),
+    ];
+}
+
+$mf = grainno_get_product_data($muscle_fuel);
+$tb = grainno_get_product_data($tom_brown);
 ?>
 
 <!-- ====================================================
@@ -23,18 +50,14 @@ $tom_brown   = get_page_by_path('complete-tom-brown', OBJECT, 'product');
     <div class="gf-hero__orb gf-hero__orb--3"></div>
 
     <div class="gf-hero__inner">
-        <!-- Text column -->
         <div>
             <div class="gf-hero__badge">🇳🇬 Made for Nigerian Bodies</div>
-
             <h1 class="gf-hero__headline">
                 Eat Real Food.
                 <span class="line-orange">Build the Body</span>
                 <span class="line-green">You Want.</span>
             </h1>
-
             <p class="gf-hero__sub"><?php echo esc_html($hero_sub); ?></p>
-
             <div class="gf-hero__ctas">
                 <a href="#gf-products" class="gf-btn gf-btn-primary">
                     Shop Now
@@ -42,7 +65,6 @@ $tom_brown   = get_page_by_path('complete-tom-brown', OBJECT, 'product');
                 </a>
                 <a href="#gf-how" class="gf-btn gf-btn-ghost">How It Works</a>
             </div>
-
             <div class="gf-hero__stats">
                 <div>
                     <span class="gf-hero__stat-val">500+</span>
@@ -59,12 +81,10 @@ $tom_brown   = get_page_by_path('complete-tom-brown', OBJECT, 'product');
             </div>
         </div>
 
-        <!-- Visual column -->
         <div class="gf-hero__visual">
             <div class="gf-hero__float-badge gf-hero__float-badge--1">
                 <span class="dot"></span> NAFDAC Registered
             </div>
-
             <div class="gf-hero__img-wrap">
                 <div class="gf-hero__img-glow"></div>
                 <?php if ($hero_image_url) : ?>
@@ -76,7 +96,6 @@ $tom_brown   = get_page_by_path('complete-tom-brown', OBJECT, 'product');
                     </div>
                 <?php endif; ?>
             </div>
-
             <div class="gf-hero__float-badge gf-hero__float-badge--2">
                 <span style="color:var(--gf-orange)">⭐</span> Real food. Real results.
             </div>
@@ -101,7 +120,7 @@ $tom_brown   = get_page_by_path('complete-tom-brown', OBJECT, 'product');
         <span class="gf-trustbar__sep">✦</span>
         <span class="gf-trustbar__item"><span class="icon">🛡️</span> Satisfaction Guaranteed</span>
         <span class="gf-trustbar__sep">✦</span>
-        <!-- Duplicate for seamless loop -->
+        <!-- duplicate for seamless loop -->
         <span class="gf-trustbar__item"><span class="icon">🇳🇬</span> 100% Nigerian Ingredients</span>
         <span class="gf-trustbar__sep">✦</span>
         <span class="gf-trustbar__item"><span class="icon">🚫</span> No Hormones or Chemicals</span>
@@ -118,7 +137,7 @@ $tom_brown   = get_page_by_path('complete-tom-brown', OBJECT, 'product');
 </div>
 
 <!-- ====================================================
-     PRODUCTS
+     PRODUCTS OVERVIEW
      ==================================================== -->
 <section class="gf-products gf-section" id="gf-products">
     <div class="container">
@@ -129,66 +148,284 @@ $tom_brown   = get_page_by_path('complete-tom-brown', OBJECT, 'product');
         </div>
 
         <div class="gf-products__grid">
-            <?php
-            $products = [
-                ['post' => $muscle_fuel, 'modifier' => 'gf-pcard--muscle', 'tag' => 'Muscle Builder', 'pills' => [
-                    ['High Protein', 'orange'], ['Lean Mass', 'orange'], ['Nigerian Grain', 'white']
-                ]],
-                ['post' => $tom_brown, 'modifier' => 'gf-pcard--tom', 'tag' => 'Complete Nutrition', 'pills' => [
-                    ['All-In-One', 'green'], ['Natural Energy', 'green'], ['Family Blend', 'white']
-                ]],
-            ];
-
-            foreach ($products as $pd) :
-                $p = $pd['post'];
-                if (!$p) continue;
-                $wc_product = wc_get_product($p->ID);
-                if (!$wc_product) continue;
-                $tagline  = get_post_meta($p->ID, '_grainno_tagline', true);
-                $img      = get_the_post_thumbnail_url($p->ID, 'medium_large');
-                $price    = $wc_product->get_price_html();
-                $link     = get_permalink($p->ID);
-            ?>
-            <article class="gf-pcard <?php echo esc_attr($pd['modifier']); ?> gf-reveal">
-                <a href="<?php echo esc_url($link); ?>" class="gf-pcard__img">
-                    <?php if ($img) : ?>
-                        <img src="<?php echo esc_url($img); ?>" alt="<?php echo esc_attr($p->post_title); ?>" loading="lazy">
+            <?php if ($mf) : ?>
+            <article class="gf-pcard gf-pcard--muscle gf-reveal">
+                <a href="<?php echo esc_url($mf['link']); ?>" class="gf-pcard__img">
+                    <?php if ($mf['img_med']) : ?>
+                        <img src="<?php echo esc_url($mf['img_med']); ?>" alt="<?php echo esc_attr($mf['title']); ?>" loading="lazy">
                     <?php else : ?>
-                        <div class="gf-pcard__img-placeholder">
-                            <span style="font-size:3rem;">🌾</span>
-                            <span>Image coming soon</span>
-                        </div>
+                        <div class="gf-pcard__img-placeholder"><span style="font-size:3rem;">🌾</span></div>
                     <?php endif; ?>
-                    <span class="gf-pcard__tag"><?php echo esc_html($pd['tag']); ?></span>
+                    <span class="gf-pcard__tag">Muscle Builder</span>
                 </a>
-
                 <div class="gf-pcard__body">
-                    <h3 class="gf-pcard__name"><?php echo esc_html($p->post_title); ?></h3>
-                    <?php if ($tagline) : ?>
-                        <p class="gf-pcard__tagline"><?php echo esc_html($tagline); ?></p>
+                    <h3 class="gf-pcard__name"><?php echo esc_html($mf['title']); ?></h3>
+                    <?php if ($mf['tagline']) : ?>
+                        <p class="gf-pcard__tagline"><?php echo esc_html($mf['tagline']); ?></p>
                     <?php endif; ?>
-
                     <div class="gf-pcard__pills">
-                        <?php foreach ($pd['pills'] as $pill) : ?>
-                            <span class="gf-pill gf-pill--<?php echo esc_attr($pill[1]); ?>"><?php echo esc_html($pill[0]); ?></span>
-                        <?php endforeach; ?>
+                        <span class="gf-pill gf-pill--orange">High Protein</span>
+                        <span class="gf-pill gf-pill--orange">Lean Mass</span>
+                        <span class="gf-pill gf-pill--white">Nigerian Grain</span>
                     </div>
-
                     <div class="gf-pcard__footer">
                         <div class="gf-pcard__price">
                             <span class="gf-pcard__price-from">from</span>
-                            <?php echo $price; ?>
+                            <?php echo $mf['price']; ?>
                         </div>
-                        <a href="<?php echo esc_url($link); ?>" class="gf-btn gf-btn-primary" style="padding:12px 24px;font-size:0.9rem;">
-                            Choose Size
-                        </a>
+                        <a href="<?php echo esc_url($mf['link']); ?>" class="gf-btn gf-btn-primary" style="padding:12px 24px;font-size:0.9rem;">Choose Size</a>
                     </div>
                 </div>
             </article>
-            <?php endforeach; ?>
+            <?php endif; ?>
+
+            <?php if ($tb) : ?>
+            <article class="gf-pcard gf-pcard--tom gf-reveal gf-reveal-delay-2">
+                <a href="<?php echo esc_url($tb['link']); ?>" class="gf-pcard__img">
+                    <?php if ($tb['img_med']) : ?>
+                        <img src="<?php echo esc_url($tb['img_med']); ?>" alt="<?php echo esc_attr($tb['title']); ?>" loading="lazy">
+                    <?php else : ?>
+                        <div class="gf-pcard__img-placeholder"><span style="font-size:3rem;">🥣</span></div>
+                    <?php endif; ?>
+                    <span class="gf-pcard__tag">Complete Nutrition</span>
+                </a>
+                <div class="gf-pcard__body">
+                    <h3 class="gf-pcard__name"><?php echo esc_html($tb['title']); ?></h3>
+                    <?php if ($tb['tagline']) : ?>
+                        <p class="gf-pcard__tagline"><?php echo esc_html($tb['tagline']); ?></p>
+                    <?php endif; ?>
+                    <div class="gf-pcard__pills">
+                        <span class="gf-pill gf-pill--green">All-In-One</span>
+                        <span class="gf-pill gf-pill--green">Natural Energy</span>
+                        <span class="gf-pill gf-pill--white">Family Blend</span>
+                    </div>
+                    <div class="gf-pcard__footer">
+                        <div class="gf-pcard__price">
+                            <span class="gf-pcard__price-from">from</span>
+                            <?php echo $tb['price']; ?>
+                        </div>
+                        <a href="<?php echo esc_url($tb['link']); ?>" class="gf-btn gf-btn-primary" style="padding:12px 24px;font-size:0.9rem;">Choose Size</a>
+                    </div>
+                </div>
+            </article>
+            <?php endif; ?>
         </div>
     </div>
 </section>
+
+<!-- ====================================================
+     PRODUCT SPOTLIGHT — MUSCLE FUEL
+     ==================================================== -->
+<?php if ($mf) : ?>
+<section class="gf-spotlight" id="gf-muscle-fuel">
+    <div class="gf-spotlight__bg-orb gf-spotlight__bg-orb--orange"></div>
+
+    <div class="container">
+        <div class="gf-spotlight__inner">
+
+            <!-- Text side -->
+            <div class="gf-spotlight__text gf-reveal">
+                <div class="gf-spotlight__label">Muscle Builder</div>
+                <h2 class="gf-spotlight__title"><?php echo esc_html($mf['title']); ?></h2>
+
+                <?php if ($mf['tagline']) : ?>
+                    <p class="gf-spotlight__tagline"><?php echo esc_html($mf['tagline']); ?></p>
+                <?php else : ?>
+                    <p class="gf-spotlight__tagline">A high-protein blend formulated for Nigerians who want to build lean muscle, fill out naturally, and feel strong — using real grain-based ingredients your body already knows.</p>
+                <?php endif; ?>
+
+                <?php if ($mf['description']) : ?>
+                    <div class="gf-spotlight__desc"><?php echo wp_kses_post(wp_trim_words($mf['description'], 50)); ?></div>
+                <?php endif; ?>
+
+                <?php if ($mf['protein'] || $mf['calories'] || $mf['carbs'] || $mf['fat']) : ?>
+                    <div class="gf-spotlight__macros">
+                        <?php if ($mf['protein']) : ?>
+                            <div class="gf-spotlight__macro">
+                                <span class="gf-spotlight__macro-val"><?php echo esc_html($mf['protein']); ?></span>
+                                <div class="gf-spotlight__macro-label">Protein</div>
+                            </div>
+                        <?php endif; ?>
+                        <?php if ($mf['calories']) : ?>
+                            <div class="gf-spotlight__macro">
+                                <span class="gf-spotlight__macro-val"><?php echo esc_html($mf['calories']); ?></span>
+                                <div class="gf-spotlight__macro-label">Calories</div>
+                            </div>
+                        <?php endif; ?>
+                        <?php if ($mf['carbs']) : ?>
+                            <div class="gf-spotlight__macro">
+                                <span class="gf-spotlight__macro-val"><?php echo esc_html($mf['carbs']); ?></span>
+                                <div class="gf-spotlight__macro-label">Carbs</div>
+                            </div>
+                        <?php endif; ?>
+                        <?php if ($mf['fat']) : ?>
+                            <div class="gf-spotlight__macro">
+                                <span class="gf-spotlight__macro-val"><?php echo esc_html($mf['fat']); ?></span>
+                                <div class="gf-spotlight__macro-label">Fat</div>
+                            </div>
+                        <?php endif; ?>
+                        <div class="gf-spotlight__macro" style="min-width:70px;">
+                            <span class="gf-spotlight__macro-val" style="font-size:0.65rem;color:var(--gf-muted);">per 100g</span>
+                            <div class="gf-spotlight__macro-label">serving</div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if (!empty($mf['ingredients'])) : ?>
+                    <div class="gf-spotlight__ings-title">Key Ingredients</div>
+                    <ul class="gf-spotlight__ings">
+                        <?php foreach ($mf['ingredients'] as $ing) : ?>
+                            <li><?php echo esc_html($ing); ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+
+                <div class="gf-spotlight__price">
+                    <span class="gf-spotlight__price-from">from</span>
+                    <?php echo $mf['price']; ?>
+                </div>
+                <a href="<?php echo esc_url($mf['link']); ?>" class="gf-btn gf-btn-primary">
+                    Order Muscle Fuel
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+
+            <!-- Visual side -->
+            <div class="gf-spotlight__visual gf-reveal gf-reveal-delay-2">
+                <?php if ($mf['protein']) : ?>
+                    <div class="gf-spotlight__stat gf-spotlight__stat--tl">
+                        <span class="gf-spotlight__stat-val"><?php echo esc_html($mf['protein']); ?></span>
+                        <div class="gf-spotlight__stat-label">Protein / 100g</div>
+                    </div>
+                <?php endif; ?>
+                <div class="gf-spotlight__img-frame">
+                    <div class="gf-spotlight__glow gf-spotlight__glow--orange"></div>
+                    <?php if ($mf['img']) : ?>
+                        <img src="<?php echo esc_url($mf['img']); ?>" alt="<?php echo esc_attr($mf['title']); ?>" loading="lazy">
+                    <?php else : ?>
+                        <div class="gf-spotlight__img-placeholder">
+                            <span style="font-size:4rem;">💪</span>
+                            <span>Muscle Fuel Meal</span>
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <div class="gf-spotlight__stat gf-spotlight__stat--br">
+                    <span class="gf-spotlight__stat-val">0</span>
+                    <div class="gf-spotlight__stat-label">Chemicals used</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+
+<!-- ====================================================
+     PRODUCT SPOTLIGHT — COMPLETE TOM BROWN
+     ==================================================== -->
+<?php if ($tb) : ?>
+<section class="gf-spotlight gf-spotlight--alt gf-spotlight--reverse" id="gf-tom-brown">
+    <div class="gf-spotlight__bg-orb gf-spotlight__bg-orb--green"></div>
+
+    <div class="container">
+        <div class="gf-spotlight__inner">
+
+            <!-- Text side -->
+            <div class="gf-spotlight__text gf-reveal">
+                <div class="gf-spotlight__label">Complete Nutrition</div>
+                <h2 class="gf-spotlight__title"><?php echo esc_html($tb['title']); ?></h2>
+
+                <?php if ($tb['tagline']) : ?>
+                    <p class="gf-spotlight__tagline"><?php echo esc_html($tb['tagline']); ?></p>
+                <?php else : ?>
+                    <p class="gf-spotlight__tagline">A complete all-in-one meal blend combining the best of traditional Nigerian Tom Brown with added protein, healthy fats, and micronutrients — for the whole family.</p>
+                <?php endif; ?>
+
+                <?php if ($tb['description']) : ?>
+                    <div class="gf-spotlight__desc"><?php echo wp_kses_post(wp_trim_words($tb['description'], 50)); ?></div>
+                <?php endif; ?>
+
+                <?php if ($tb['protein'] || $tb['calories'] || $tb['carbs'] || $tb['fat']) : ?>
+                    <div class="gf-spotlight__macros">
+                        <?php if ($tb['protein']) : ?>
+                            <div class="gf-spotlight__macro">
+                                <span class="gf-spotlight__macro-val"><?php echo esc_html($tb['protein']); ?></span>
+                                <div class="gf-spotlight__macro-label">Protein</div>
+                            </div>
+                        <?php endif; ?>
+                        <?php if ($tb['calories']) : ?>
+                            <div class="gf-spotlight__macro">
+                                <span class="gf-spotlight__macro-val"><?php echo esc_html($tb['calories']); ?></span>
+                                <div class="gf-spotlight__macro-label">Calories</div>
+                            </div>
+                        <?php endif; ?>
+                        <?php if ($tb['carbs']) : ?>
+                            <div class="gf-spotlight__macro">
+                                <span class="gf-spotlight__macro-val"><?php echo esc_html($tb['carbs']); ?></span>
+                                <div class="gf-spotlight__macro-label">Carbs</div>
+                            </div>
+                        <?php endif; ?>
+                        <?php if ($tb['fat']) : ?>
+                            <div class="gf-spotlight__macro">
+                                <span class="gf-spotlight__macro-val"><?php echo esc_html($tb['fat']); ?></span>
+                                <div class="gf-spotlight__macro-label">Fat</div>
+                            </div>
+                        <?php endif; ?>
+                        <div class="gf-spotlight__macro" style="min-width:70px;">
+                            <span class="gf-spotlight__macro-val" style="font-size:0.65rem;color:var(--gf-muted);">per 100g</span>
+                            <div class="gf-spotlight__macro-label">serving</div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if (!empty($tb['ingredients'])) : ?>
+                    <div class="gf-spotlight__ings-title">Key Ingredients</div>
+                    <ul class="gf-spotlight__ings">
+                        <?php foreach ($tb['ingredients'] as $ing) : ?>
+                            <li><?php echo esc_html($ing); ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+
+                <div class="gf-spotlight__price">
+                    <span class="gf-spotlight__price-from">from</span>
+                    <?php echo $tb['price']; ?>
+                </div>
+                <a href="<?php echo esc_url($tb['link']); ?>" class="gf-btn gf-btn-green">
+                    Order Complete Tom Brown
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+
+            <!-- Visual side -->
+            <div class="gf-spotlight__visual gf-reveal gf-reveal-delay-2">
+                <?php if ($tb['protein']) : ?>
+                    <div class="gf-spotlight__stat gf-spotlight__stat--tl">
+                        <span class="gf-spotlight__stat-val"><?php echo esc_html($tb['protein']); ?></span>
+                        <div class="gf-spotlight__stat-label">Protein / 100g</div>
+                    </div>
+                <?php endif; ?>
+                <div class="gf-spotlight__img-frame">
+                    <div class="gf-spotlight__glow gf-spotlight__glow--green"></div>
+                    <?php if ($tb['img']) : ?>
+                        <img src="<?php echo esc_url($tb['img']); ?>" alt="<?php echo esc_attr($tb['title']); ?>" loading="lazy">
+                    <?php else : ?>
+                        <div class="gf-spotlight__img-placeholder">
+                            <span style="font-size:4rem;">🥣</span>
+                            <span>Complete Tom Brown</span>
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <div class="gf-spotlight__stat gf-spotlight__stat--br">
+                    <span class="gf-spotlight__stat-val">100%</span>
+                    <div class="gf-spotlight__stat-label">Nigerian recipe</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<?php endif; ?>
 
 <!-- ====================================================
      HOW IT WORKS
@@ -200,7 +437,6 @@ $tom_brown   = get_page_by_path('complete-tom-brown', OBJECT, 'product');
             <h2 class="gf-section__title">Real Food. Real Results.</h2>
             <p class="gf-section__sub">No shortcuts. No chemicals. Just the right Nigerian ingredients working the way nature intended.</p>
         </div>
-
         <div class="gf-how__grid">
             <div class="gf-how__card gf-reveal gf-reveal-delay-1">
                 <div class="gf-how__num">01</div>
@@ -239,7 +475,6 @@ $tom_brown   = get_page_by_path('complete-tom-brown', OBJECT, 'product');
             <div class="gf-section__label">Real Nigerians. Real Results.</div>
             <h2 class="gf-section__title">They Said What We Couldn't</h2>
         </div>
-
         <div class="gf-testimonials__grid">
             <div class="gf-tcard gf-reveal gf-reveal-delay-1">
                 <div class="gf-tcard__stars">⭐⭐⭐⭐⭐</div>
@@ -252,7 +487,6 @@ $tom_brown   = get_page_by_path('complete-tom-brown', OBJECT, 'product');
                     </div>
                 </div>
             </div>
-
             <div class="gf-tcard gf-reveal gf-reveal-delay-2">
                 <div class="gf-tcard__stars">⭐⭐⭐⭐⭐</div>
                 <p class="gf-tcard__quote">I eat and nothing sticks — my body just burns everything. I tried Complete Tom Brown for six weeks. I actually started filling out. My face changed first.</p>
@@ -264,7 +498,6 @@ $tom_brown   = get_page_by_path('complete-tom-brown', OBJECT, 'product');
                     </div>
                 </div>
             </div>
-
             <div class="gf-tcard gf-reveal gf-reveal-delay-3">
                 <div class="gf-tcard__stars">⭐⭐⭐⭐⭐</div>
                 <p class="gf-tcard__quote">I just want something natural — no chemicals, no side effects. I've tried everything and nothing was working until this. I feel healthy, not just heavy.</p>
@@ -277,7 +510,6 @@ $tom_brown   = get_page_by_path('complete-tom-brown', OBJECT, 'product');
                 </div>
             </div>
         </div>
-
         <div class="gf-badges gf-reveal">
             <div class="gf-badge"><span class="icon">🇳🇬</span> 100% Nigerian Ingredients</div>
             <div class="gf-badge"><span class="icon">🚫</span> No Hormones or Chemicals</div>
@@ -317,20 +549,18 @@ $tom_brown   = get_page_by_path('complete-tom-brown', OBJECT, 'product');
                     <a href="#" aria-label="Facebook">👍</a>
                 </div>
             </div>
-
             <div>
                 <div class="gf-footer__col-label">Shop</div>
                 <ul class="gf-footer__links">
-                    <?php if ($muscle_fuel) : ?>
-                        <li><a href="<?php echo esc_url(get_permalink($muscle_fuel)); ?>">Muscle Fuel Meal</a></li>
+                    <?php if ($mf) : ?>
+                        <li><a href="<?php echo esc_url($mf['link']); ?>">Muscle Fuel Meal</a></li>
                     <?php endif; ?>
-                    <?php if ($tom_brown) : ?>
-                        <li><a href="<?php echo esc_url(get_permalink($tom_brown)); ?>">Complete Tom Brown</a></li>
+                    <?php if ($tb) : ?>
+                        <li><a href="<?php echo esc_url($tb['link']); ?>">Complete Tom Brown</a></li>
                     <?php endif; ?>
                     <li><a href="<?php echo esc_url(wc_get_cart_url()); ?>">Cart</a></li>
                 </ul>
             </div>
-
             <div>
                 <div class="gf-footer__col-label">Contact</div>
                 <ul class="gf-footer__links">
@@ -340,7 +570,6 @@ $tom_brown   = get_page_by_path('complete-tom-brown', OBJECT, 'product');
                 </ul>
             </div>
         </div>
-
         <div class="gf-footer__bottom">
             <span>© <?php echo date('Y'); ?> Grainno Foods. Made with 🧡 for Nigerian bodies.</span>
             <span>Port Harcourt, Nigeria</span>
