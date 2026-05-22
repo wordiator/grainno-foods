@@ -9,23 +9,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup SSH agent
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Add server to known hosts
-        run: ssh-keyscan -H ftp.freedomgladiators.net >> ~/.ssh/known_hosts
-
-      - name: Deploy via rsync over SSH
+      - name: Trigger cPanel Git Deploy
         run: |
-          rsync -avz --delete \
-            --exclude='.git*' \
-            --exclude='wp-config.php' \
-            --exclude='wp-content/uploads/' \
-            --exclude='wp-content/cache/' \
-            --exclude='node_modules/' \
-            ./ freehtbn@ftp.freedomgladiators.net:/home/freehtbn/grainnofoods.com/
+          curl -s -X POST \
+            -H "Authorization: cpanel freehtbn:${{ secrets.CPANEL_API_TOKEN }}" \
+            "https://ftp.freedomgladiators.net:2083/execute/VersionControl/update" \
+            -d "repository=/home/freehtbn/repositories/grainnofoods" \
+            -d "branch=main"
