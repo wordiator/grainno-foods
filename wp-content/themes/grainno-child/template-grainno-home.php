@@ -10,35 +10,81 @@ $hero_image_id  = get_theme_mod('grainno_hero_image');
 $hero_image_url = $hero_image_id ? wp_get_attachment_image_url($hero_image_id, 'large') : '';
 $hero_sub       = get_theme_mod('grainno_hero_sub', "You eat well but nothing sticks. You work out but nothing tones. Your body needs the right Nigerian food — not lab chemicals.");
 
-$muscle_fuel = get_page_by_path('muscle-fuel-meal', OBJECT, 'product');
-$tom_brown   = get_page_by_path('complete-tom-brown', OBJECT, 'product');
-
-// Pre-fetch product data
-function grainno_get_product_data($p) {
-    if (!$p) return null;
-    $wc = wc_get_product($p->ID);
-    if (!$wc) return null;
-    $ingredients = get_post_meta($p->ID, '_grainno_ingredients', true);
-    return [
-        'id'          => $p->ID,
-        'wc'          => $wc,
-        'title'       => $p->post_title,
-        'tagline'     => get_post_meta($p->ID, '_grainno_tagline', true),
-        'protein'     => get_post_meta($p->ID, '_grainno_protein', true),
-        'calories'    => get_post_meta($p->ID, '_grainno_calories', true),
-        'carbs'       => get_post_meta($p->ID, '_grainno_carbs', true),
-        'fat'         => get_post_meta($p->ID, '_grainno_fat', true),
-        'ingredients' => $ingredients ? array_map('trim', explode(',', $ingredients)) : [],
-        'description' => get_post_field('post_content', $p->ID),
-        'img'         => get_the_post_thumbnail_url($p->ID, 'large'),
-        'img_med'     => get_the_post_thumbnail_url($p->ID, 'medium_large'),
-        'link'        => get_permalink($p->ID),
-        'price'       => $wc->get_price_html(),
-    ];
+// Try to find products by slug, then by title search
+function grainno_find_product($slug, $title_fallback) {
+    $p = get_page_by_path($slug, OBJECT, 'product');
+    if (!$p) {
+        $results = get_posts(['post_type' => 'product', 'posts_per_page' => 1,
+            'post_status' => 'publish', 's' => $title_fallback]);
+        $p = !empty($results) ? $results[0] : null;
+    }
+    return $p;
 }
 
-$mf = grainno_get_product_data($muscle_fuel);
-$tb = grainno_get_product_data($tom_brown);
+function grainno_get_product_data($p, $defaults) {
+    if ($p) {
+        $wc = wc_get_product($p->ID);
+        if ($wc) {
+            $ingredients = get_post_meta($p->ID, '_grainno_ingredients', true);
+            return array_merge($defaults, [
+                'id'          => $p->ID,
+                'title'       => $p->post_title,
+                'tagline'     => get_post_meta($p->ID, '_grainno_tagline', true) ?: $defaults['tagline'],
+                'protein'     => get_post_meta($p->ID, '_grainno_protein', true),
+                'calories'    => get_post_meta($p->ID, '_grainno_calories', true),
+                'carbs'       => get_post_meta($p->ID, '_grainno_carbs', true),
+                'fat'         => get_post_meta($p->ID, '_grainno_fat', true),
+                'ingredients' => $ingredients ? array_map('trim', explode(',', $ingredients)) : $defaults['ingredients'],
+                'description' => get_post_field('post_content', $p->ID),
+                'img'         => get_the_post_thumbnail_url($p->ID, 'large'),
+                'img_med'     => get_the_post_thumbnail_url($p->ID, 'medium_large'),
+                'link'        => get_permalink($p->ID),
+                'price'       => $wc->get_price_html(),
+                'live'        => true,
+            ]);
+        }
+    }
+    return $defaults;
+}
+
+$mf_post = grainno_find_product('muscle-fuel-meal', 'Muscle Fuel');
+$tb_post = grainno_find_product('complete-tom-brown', 'Tom Brown');
+
+$shop_url = function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : '/shop/';
+
+$mf = grainno_get_product_data($mf_post, [
+    'id'          => 0,
+    'title'       => 'Muscle Fuel Meal',
+    'tagline'     => 'A high-protein grain blend formulated for Nigerians who want to build lean muscle, fill out naturally, and feel strong — using real ingredients your body already knows.',
+    'protein'     => '28g',
+    'calories'    => '380kcal',
+    'carbs'       => '42g',
+    'fat'         => '8g',
+    'ingredients' => ['Soya Beans', 'Tigernut', 'Groundnut', 'Dates', 'Crayfish', 'Ginger'],
+    'description' => '',
+    'img'         => '',
+    'img_med'     => '',
+    'link'        => $shop_url,
+    'price'       => '',
+    'live'        => false,
+]);
+
+$tb = grainno_get_product_data($tb_post, [
+    'id'          => 0,
+    'title'       => 'Complete TomBrown',
+    'tagline'     => 'A complete all-in-one meal blend combining traditional Nigerian Tom Brown with added protein, healthy fats, and micronutrients — nourishing for the whole family.',
+    'protein'     => '22g',
+    'calories'    => '360kcal',
+    'carbs'       => '48g',
+    'fat'         => '9g',
+    'ingredients' => ['Corn', 'Soya Beans', 'Tigernut', 'Groundnut', 'Millet', 'Crayfish', 'Ginger'],
+    'description' => '',
+    'img'         => '',
+    'img_med'     => '',
+    'link'        => $shop_url,
+    'price'       => '',
+    'live'        => false,
+]);
 ?>
 
 <!-- ====================================================
@@ -148,7 +194,6 @@ $tb = grainno_get_product_data($tom_brown);
         </div>
 
         <div class="gf-products__grid">
-            <?php if ($mf) : ?>
             <article class="gf-pcard gf-pcard--muscle gf-reveal">
                 <a href="<?php echo esc_url($mf['link']); ?>" class="gf-pcard__img">
                     <?php if ($mf['img_med']) : ?>
@@ -160,9 +205,7 @@ $tb = grainno_get_product_data($tom_brown);
                 </a>
                 <div class="gf-pcard__body">
                     <h3 class="gf-pcard__name"><?php echo esc_html($mf['title']); ?></h3>
-                    <?php if ($mf['tagline']) : ?>
-                        <p class="gf-pcard__tagline"><?php echo esc_html($mf['tagline']); ?></p>
-                    <?php endif; ?>
+                    <p class="gf-pcard__tagline"><?php echo esc_html($mf['tagline']); ?></p>
                     <div class="gf-pcard__pills">
                         <span class="gf-pill gf-pill--orange">High Protein</span>
                         <span class="gf-pill gf-pill--orange">Lean Mass</span>
@@ -170,16 +213,16 @@ $tb = grainno_get_product_data($tom_brown);
                     </div>
                     <div class="gf-pcard__footer">
                         <div class="gf-pcard__price">
-                            <span class="gf-pcard__price-from">from</span>
-                            <?php echo $mf['price']; ?>
+                            <?php if ($mf['price']) : ?>
+                                <span class="gf-pcard__price-from">from</span>
+                                <?php echo $mf['price']; ?>
+                            <?php endif; ?>
                         </div>
                         <a href="<?php echo esc_url($mf['link']); ?>" class="gf-btn gf-btn-primary" style="padding:12px 24px;font-size:0.9rem;">Choose Size</a>
                     </div>
                 </div>
             </article>
-            <?php endif; ?>
 
-            <?php if ($tb) : ?>
             <article class="gf-pcard gf-pcard--tom gf-reveal gf-reveal-delay-2">
                 <a href="<?php echo esc_url($tb['link']); ?>" class="gf-pcard__img">
                     <?php if ($tb['img_med']) : ?>
@@ -191,9 +234,7 @@ $tb = grainno_get_product_data($tom_brown);
                 </a>
                 <div class="gf-pcard__body">
                     <h3 class="gf-pcard__name"><?php echo esc_html($tb['title']); ?></h3>
-                    <?php if ($tb['tagline']) : ?>
-                        <p class="gf-pcard__tagline"><?php echo esc_html($tb['tagline']); ?></p>
-                    <?php endif; ?>
+                    <p class="gf-pcard__tagline"><?php echo esc_html($tb['tagline']); ?></p>
                     <div class="gf-pcard__pills">
                         <span class="gf-pill gf-pill--green">All-In-One</span>
                         <span class="gf-pill gf-pill--green">Natural Energy</span>
@@ -201,14 +242,15 @@ $tb = grainno_get_product_data($tom_brown);
                     </div>
                     <div class="gf-pcard__footer">
                         <div class="gf-pcard__price">
-                            <span class="gf-pcard__price-from">from</span>
-                            <?php echo $tb['price']; ?>
+                            <?php if ($tb['price']) : ?>
+                                <span class="gf-pcard__price-from">from</span>
+                                <?php echo $tb['price']; ?>
+                            <?php endif; ?>
                         </div>
                         <a href="<?php echo esc_url($tb['link']); ?>" class="gf-btn gf-btn-primary" style="padding:12px 24px;font-size:0.9rem;">Choose Size</a>
                     </div>
                 </div>
             </article>
-            <?php endif; ?>
         </div>
     </div>
 </section>
@@ -216,7 +258,6 @@ $tb = grainno_get_product_data($tom_brown);
 <!-- ====================================================
      PRODUCT SPOTLIGHT — MUSCLE FUEL
      ==================================================== -->
-<?php if ($mf) : ?>
 <section class="gf-spotlight" id="gf-muscle-fuel">
     <div class="gf-spotlight__bg-orb gf-spotlight__bg-orb--orange"></div>
 
@@ -292,12 +333,10 @@ $tb = grainno_get_product_data($tom_brown);
 
             <!-- Visual side -->
             <div class="gf-spotlight__visual gf-reveal gf-reveal-delay-2">
-                <?php if ($mf['protein']) : ?>
-                    <div class="gf-spotlight__stat gf-spotlight__stat--tl">
-                        <span class="gf-spotlight__stat-val"><?php echo esc_html($mf['protein']); ?></span>
-                        <div class="gf-spotlight__stat-label">Protein / 100g</div>
-                    </div>
-                <?php endif; ?>
+                <div class="gf-spotlight__stat gf-spotlight__stat--tl">
+                    <span class="gf-spotlight__stat-val"><?php echo esc_html($mf['protein']); ?></span>
+                    <div class="gf-spotlight__stat-label">Protein / 100g</div>
+                </div>
                 <div class="gf-spotlight__img-frame">
                     <div class="gf-spotlight__glow gf-spotlight__glow--orange"></div>
                     <?php if ($mf['img']) : ?>
@@ -318,12 +357,10 @@ $tb = grainno_get_product_data($tom_brown);
         </div>
     </div>
 </section>
-<?php endif; ?>
 
 <!-- ====================================================
      PRODUCT SPOTLIGHT — COMPLETE TOM BROWN
      ==================================================== -->
-<?php if ($tb) : ?>
 <section class="gf-spotlight gf-spotlight--alt gf-spotlight--reverse" id="gf-tom-brown">
     <div class="gf-spotlight__bg-orb gf-spotlight__bg-orb--green"></div>
 
@@ -399,12 +436,10 @@ $tb = grainno_get_product_data($tom_brown);
 
             <!-- Visual side -->
             <div class="gf-spotlight__visual gf-reveal gf-reveal-delay-2">
-                <?php if ($tb['protein']) : ?>
-                    <div class="gf-spotlight__stat gf-spotlight__stat--tl">
-                        <span class="gf-spotlight__stat-val"><?php echo esc_html($tb['protein']); ?></span>
-                        <div class="gf-spotlight__stat-label">Protein / 100g</div>
-                    </div>
-                <?php endif; ?>
+                <div class="gf-spotlight__stat gf-spotlight__stat--tl">
+                    <span class="gf-spotlight__stat-val"><?php echo esc_html($tb['protein']); ?></span>
+                    <div class="gf-spotlight__stat-label">Protein / 100g</div>
+                </div>
                 <div class="gf-spotlight__img-frame">
                     <div class="gf-spotlight__glow gf-spotlight__glow--green"></div>
                     <?php if ($tb['img']) : ?>
@@ -425,7 +460,6 @@ $tb = grainno_get_product_data($tom_brown);
         </div>
     </div>
 </section>
-<?php endif; ?>
 
 <!-- ====================================================
      HOW IT WORKS
@@ -552,12 +586,8 @@ $tb = grainno_get_product_data($tom_brown);
             <div>
                 <div class="gf-footer__col-label">Shop</div>
                 <ul class="gf-footer__links">
-                    <?php if ($mf) : ?>
-                        <li><a href="<?php echo esc_url($mf['link']); ?>">Muscle Fuel Meal</a></li>
-                    <?php endif; ?>
-                    <?php if ($tb) : ?>
-                        <li><a href="<?php echo esc_url($tb['link']); ?>">Complete Tom Brown</a></li>
-                    <?php endif; ?>
+                    <li><a href="<?php echo esc_url($mf['link']); ?>">Muscle Fuel Meal</a></li>
+                    <li><a href="<?php echo esc_url($tb['link']); ?>">Complete Tom Brown</a></li>
                     <li><a href="<?php echo esc_url(wc_get_cart_url()); ?>">Cart</a></li>
                 </ul>
             </div>
