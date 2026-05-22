@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Trigger cPanel Git Deploy
         run: |
-          curl -s -X POST \
+          curl -sk -X POST \
             -H "Authorization: cpanel freehtbn:${{ secrets.CPANEL_API_TOKEN }}" \
             "https://ftp.freedomgladiators.net:2083/execute/VersionControl/update" \
             -d "repository=/home/freehtbn/repositories/grainnofoods" \
