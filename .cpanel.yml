@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/freehtbn/grainnofoods.com/
+    - /bin/cp -R . $DEPLOYPATH
+    - /bin/rm -rf $DEPLOYPATH/.git
