@@ -1,0 +1,24 @@
+# WordPress sensitive config — manage this manually on the live server
+wp-config.php
+
+# Uploads — too large for git, manage separately or via host backups
+wp-content/uploads/
+
+# Cache & generated files
+wp-content/cache/
+wp-content/upgrade/
+wp-content/advanced-cache.php
+wp-content/object-cache.php
+wp-content/wp-cache-config.php
+
+# Local dev tools
+wp-content/debug.log
+*.log
+.DS_Store
+Thumbs.db
+node_modules/
+.env
+.env.*
+
+# Local by Flywheel
+local-xdebuginfo.php
