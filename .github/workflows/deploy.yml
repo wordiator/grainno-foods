@@ -11,20 +11,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          server-dir: /grainnofoods.com/
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            **/wp-content/uploads/**
-            **/wp-content/cache/**
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H ftp.freedomgladiators.net >> ~/.ssh/known_hosts
+
+      - name: Deploy via rsync over SSH
+        run: |
+          rsync -avz --delete \
+            --exclude='.git*' \
+            --exclude='wp-config.php' \
+            --exclude='wp-content/uploads/' \
+            --exclude='wp-content/cache/' \
+            --exclude='node_modules/' \
+            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" \
+            ./ freehtbn@ftp.freedomgladiators.net:/home/freehtbn/grainnofoods.com/
