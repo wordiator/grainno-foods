@@ -16,3 +16,13 @@ jobs:
             "https://ftp.freedomgladiators.net:2083/execute/VersionControl/update" \
             -d "repository=/home/freehtbn/repositories/grainnofoods" \
             -d "branch=main"
+
+      - name: Run Deploy Webhook
+        run: |
+          PAYLOAD='{"ref":"refs/heads/main"}'
+          SIG="sha256=$(echo -n "$PAYLOAD" | openssl dgst -sha256 -hmac 'bc57c7c5448143047647f382bcf8214acb0475956c94ac3d2e34cd867f397227' | awk '{print $2}')"
+          curl -s -X POST \
+            -H "Content-Type: application/json" \
+            -H "X-Hub-Signature-256: $SIG" \
+            -d "$PAYLOAD" \
+            "https://grainnofoods.com/deploy-webhook.php"
