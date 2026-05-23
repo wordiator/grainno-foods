@@ -21,9 +21,9 @@
        SCROLL REVEAL (INTERSECTION OBSERVER)
        ============================================================ */
     function initReveal() {
+        var selectors = '.gf-reveal, .fade-up';
         if (!('IntersectionObserver' in window)) {
-            // Fallback: show all elements immediately
-            document.querySelectorAll('.gf-reveal').forEach(function (el) {
+            document.querySelectorAll(selectors).forEach(function (el) {
                 el.classList.add('visible');
             });
             return;
@@ -36,9 +36,9 @@
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-        document.querySelectorAll('.gf-reveal').forEach(function (el) {
+        document.querySelectorAll(selectors).forEach(function (el) {
             observer.observe(el);
         });
     }
@@ -146,6 +146,45 @@
             });
         });
     }
+
+    /* ============================================================
+       FLIP CARDS
+       ============================================================ */
+    $(document).on('click', '.gf-flip__hint', function (e) {
+        e.stopPropagation();
+        var flipId = $(this).data('flip-id');
+        if (flipId) { $('#' + flipId).addClass('flipped'); }
+    });
+
+    $(document).on('click', '.gf-flip__back-close', function (e) {
+        e.stopPropagation();
+        $(this).closest('.gf-flip').removeClass('flipped');
+    });
+
+    $(document).on('click', '.gf-flip__back-actions .gf-btn', function (e) {
+        e.stopPropagation(); // let link navigate, don't flip back
+    });
+
+    /* Size pill active state */
+    $(document).on('click', '.gf-flip__size', function () {
+        $(this).siblings('.gf-flip__size').removeClass('active');
+        $(this).addClass('active');
+    });
+
+    /* ============================================================
+       TOAST
+       ============================================================ */
+    function showToast(msg, duration) {
+        var $toast = $('#gf-toast');
+        $toast.text(msg).addClass('show');
+        setTimeout(function () { $toast.removeClass('show'); }, duration || 2800);
+    }
+    window.grainnoToast = showToast;
+
+    /* Show toast on add to cart */
+    $(document.body).on('added_to_cart', function () {
+        showToast('Added to cart!');
+    });
 
     /* ============================================================
        SMOOTH SCROLL FOR ANCHOR LINKS
