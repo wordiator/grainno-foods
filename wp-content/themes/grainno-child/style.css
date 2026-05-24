@@ -2,7 +2,7 @@
 Theme Name:   Grainno Child
 Description:  Grainno Foods child theme for WooCommerce
 Template:     storefront
-Version:      3.0.0
+Version:      3.1.0
 Author:       Grainno Foods
 Text Domain:  grainno-child
 */
@@ -2112,7 +2112,7 @@ body.admin-bar { margin-top: 0 !important; padding-top: 0 !important; }
 @media (max-width: 860px) {
   .gf-why__grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
   .gf-products__grid { grid-template-columns: 1fr !important; max-width: 480px; margin: 0 auto; }
-  .gf-flip { height: auto; min-height: 580px; }
+  .gf-flip { height: 590px; }
   .gf-process__steps { flex-direction: column; align-items: center; }
   .gf-process__connector { width: 1px; height: 36px; min-width: unset; margin: 0 auto; }
   .gf-process__step { width: 220px; }
@@ -2122,7 +2122,21 @@ body.admin-bar { margin-top: 0 !important; padding-top: 0 !important; }
   .gf-why { padding: 80px 0; }
   .gf-why__card { padding: 28px 24px; }
   .gf-process { padding: 80px 0; }
-  .gf-flip { min-height: 600px; }
-  .gf-flip__img-area { height: 200px; }
   .gf-toast { font-size: 0.8rem; padding: 10px 20px; bottom: 16px; max-width: calc(100vw - 32px); white-space: normal; text-align: center; }
+
+  /* Disable 3D flip on mobile — use show/hide instead */
+  .gf-flip { perspective: none; height: auto; }
+  .gf-flip__inner { transform-style: flat; transition: none; height: auto; }
+  .gf-flip.flipped .gf-flip__inner { transform: none; }
+  .gf-flip__front,
+  .gf-flip__back {
+    position: relative;
+    inset: unset;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+  }
+  .gf-flip__back { transform: none; display: none; height: auto; }
+  .gf-flip.flipped .gf-flip__front { display: none; }
+  .gf-flip.flipped .gf-flip__back { display: flex; }
+  .gf-flip__img-area { height: 200px; }
 }

@@ -70,7 +70,7 @@ $mf = grainno_get_product_data($mf_post, [
 $tb = grainno_get_product_data($tb_post, [
     'id'          => 0,
     'title'       => 'Complete Diet TomBrown',
-    'tagline'     => 'All-in-one Nigerian meal blend for balanced nutrition, energy, and whole-family nourishment — 13 natural ingredients, zero chemicals.',
+    'tagline'     => 'All-in-one Nigerian meal blend for balanced nutrition, energy, and whole-family nourishment. 13 natural ingredients, zero chemicals.',
     'protein'     => '22g',
     'calories'    => '360kcal',
     'carbs'       => '48g',
@@ -447,7 +447,7 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
             <div class="gf-process__step gf-reveal gf-reveal-delay-4">
                 <div class="gf-process__num">04</div>
                 <div class="gf-process__step-title">Precision Milling</div>
-                <p class="gf-process__step-desc">Milled to the perfect consistency — fine enough to mix easily, coarse enough to retain natural fibre.</p>
+                <p class="gf-process__step-desc">Milled to the perfect consistency. Fine enough to mix easily, coarse enough to retain natural fibre.</p>
             </div>
             <div class="gf-process__connector"></div>
             <div class="gf-process__step gf-reveal" style="transition-delay:0.5s">
@@ -457,60 +457,6 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
             </div>
         </div>
 
-    </div>
-</section>
-
-<!-- ====================================================
-     TESTIMONIALS
-     ==================================================== -->
-<section class="gf-testimonials gf-section" id="gf-trust">
-    <div class="container">
-        <div class="gf-reveal" style="text-align:center;">
-            <div class="gf-section__label">Real Nigerians. Real Results.</div>
-            <h2 class="gf-section__title">They Said What We Couldn't</h2>
-        </div>
-        <div class="gf-testimonials__grid">
-            <div class="gf-tcard gf-reveal gf-reveal-delay-1">
-                <div class="gf-tcard__stars">⭐⭐⭐⭐⭐</div>
-                <p class="gf-tcard__quote">I don't have hips — I'm just straight, no shape. After two months on Muscle Fuel, my clothes started fitting different. My aunty asked me what I was eating.</p>
-                <div class="gf-tcard__author">
-                    <div class="gf-tcard__avatar">AO</div>
-                    <div>
-                        <div class="gf-tcard__name">Amara O.</div>
-                        <div class="gf-tcard__city">Port Harcourt</div>
-                    </div>
-                </div>
-            </div>
-            <div class="gf-tcard gf-reveal gf-reveal-delay-2">
-                <div class="gf-tcard__stars">⭐⭐⭐⭐⭐</div>
-                <p class="gf-tcard__quote">I eat and nothing sticks — my body just burns everything. I tried Complete Tom Brown for six weeks. I actually started filling out. My face changed first.</p>
-                <div class="gf-tcard__author">
-                    <div class="gf-tcard__avatar">CM</div>
-                    <div>
-                        <div class="gf-tcard__name">Chinedu M.</div>
-                        <div class="gf-tcard__city">Lagos</div>
-                    </div>
-                </div>
-            </div>
-            <div class="gf-tcard gf-reveal gf-reveal-delay-3">
-                <div class="gf-tcard__stars">⭐⭐⭐⭐⭐</div>
-                <p class="gf-tcard__quote">I just want something natural — no chemicals, no side effects. I've tried everything and nothing was working until this. I feel healthy, not just heavy.</p>
-                <div class="gf-tcard__author">
-                    <div class="gf-tcard__avatar">FA</div>
-                    <div>
-                        <div class="gf-tcard__name">Fatima A.</div>
-                        <div class="gf-tcard__city">Abuja</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="gf-badges gf-reveal">
-            <div class="gf-badge"><span class="icon">🇳🇬</span> 100% Nigerian Ingredients</div>
-            <div class="gf-badge"><span class="icon">🚫</span> No Hormones or Chemicals</div>
-            <div class="gf-badge"><span class="icon">✅</span> NAFDAC Registered</div>
-            <div class="gf-badge"><span class="icon">📍</span> Made in Port Harcourt</div>
-            <div class="gf-badge"><span class="icon">⭐</span> Real Food. Real Results.</div>
-        </div>
     </div>
 </section>
 
