@@ -63,6 +63,13 @@ img { max-width: 100%; height: auto; display: block; }
 /* ============================================================
    STOREFRONT RESETS
    ============================================================ */
+
+/* Kill WordPress admin bar top margin */
+html { margin-top: 0 !important; }
+body,
+body.admin-bar { margin-top: 0 !important; padding-top: 0 !important; }
+#wpadminbar { position: fixed !important; top: 0 !important; }
+
 .site-header { background: rgba(8,8,8,0.95) !important; backdrop-filter: blur(20px); border-bottom: 1px solid var(--gf-border-soft) !important; padding: 0 !important; position: sticky; top: 0; z-index: 1000; }
 .site-header .col-full { padding: 16px 24px !important; display: flex; align-items: center; justify-content: space-between; max-width: 1160px; margin: 0 auto; }
 .site-title, .site-title a { font-family: var(--font-display) !important; font-size: 1.5rem !important; color: var(--gf-white) !important; font-weight: 700 !important; letter-spacing: -0.02em; }
@@ -71,6 +78,15 @@ img { max-width: 100%; height: auto; display: block; }
 .site-footer { display: none; }
 .page-title { display: none; }
 .entry-header { display: none; }
+
+/* Remove search bar */
+.header-widget-region,
+.site-header form[role="search"],
+.site-header .search-form,
+.site-header .widget_product_search,
+.site-header .widget_search,
+.storefront-product-search,
+.woocommerce-product-search { display: none !important; }
 .site-content,
 #content { padding: 0 !important; margin: 0 !important; }
 #primary,
