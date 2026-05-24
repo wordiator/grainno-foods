@@ -8,7 +8,7 @@ get_header();
 
 $hero_image_id  = get_theme_mod('grainno_hero_image');
 $hero_image_url = $hero_image_id ? wp_get_attachment_image_url($hero_image_id, 'large') : '';
-$hero_sub       = get_theme_mod('grainno_hero_sub', "You eat well but nothing sticks. You work out but nothing tones. Your body needs the right Nigerian food — not lab chemicals.");
+$hero_sub       = get_theme_mod('grainno_hero_sub', "Greek god shoulders, six packs, and figure-8 curves start in your kitchen, not on the gym floor.");
 
 function grainno_find_product($slug, $title_fallback) {
     $p = get_page_by_path($slug, OBJECT, 'product');
@@ -53,7 +53,7 @@ $shop_url = function_exists('wc_get_page_permalink') ? wc_get_page_permalink('sh
 $mf = grainno_get_product_data($mf_post, [
     'id'          => 0,
     'title'       => 'Muscle Fuel Meal',
-    'tagline'     => 'High-protein grain blend for lean muscle, natural weight gain, and lasting strength — made with 13 real Nigerian ingredients.',
+    'tagline'     => 'High-protein grain blend for lean muscle, healthy weight gain, and growing curves in the right places.',
     'protein'     => '28g',
     'calories'    => '380kcal',
     'carbs'       => '42g',
@@ -69,7 +69,7 @@ $mf = grainno_get_product_data($mf_post, [
 
 $tb = grainno_get_product_data($tb_post, [
     'id'          => 0,
-    'title'       => 'Complete TomBrown',
+    'title'       => 'Complete Diet TomBrown',
     'tagline'     => 'All-in-one Nigerian meal blend for balanced nutrition, energy, and whole-family nourishment — 13 natural ingredients, zero chemicals.',
     'protein'     => '22g',
     'calories'    => '360kcal',
@@ -131,9 +131,9 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
 
     <div class="gf-hero__inner">
         <div>
-            <div class="gf-hero__badge">🇳🇬 Made for Nigerian Bodies</div>
+            <div class="gf-hero__badge">🇳🇬 Your No. 1 Health Food Plug</div>
             <h1 class="gf-hero__headline">
-                Eat Real Food.
+                Eat Right.
                 <span class="line-orange">Build the Body</span>
                 <span class="line-green">You Want.</span>
             </h1>
@@ -143,27 +143,27 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
                     Shop Now
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
-                <a href="#gf-process" class="gf-btn gf-btn-ghost">How It Works</a>
+                <a href="#gf-why" class="gf-btn gf-btn-ghost">What Makes Us Different?</a>
             </div>
             <div class="gf-hero__stats">
                 <div>
-                    <span class="gf-hero__stat-val">500+</span>
-                    <div class="gf-hero__stat-label">Happy customers</div>
+                    <span class="gf-hero__stat-val">98%</span>
+                    <div class="gf-hero__stat-label">Research-Based Processing</div>
                 </div>
                 <div>
                     <span class="gf-hero__stat-val">0</span>
-                    <div class="gf-hero__stat-label">Chemicals used</div>
+                    <div class="gf-hero__stat-label">Preservatives</div>
                 </div>
                 <div>
                     <span class="gf-hero__stat-val">100%</span>
-                    <div class="gf-hero__stat-label">Nigerian ingredients</div>
+                    <div class="gf-hero__stat-label">Natural ingredients</div>
                 </div>
             </div>
         </div>
 
         <div class="gf-hero__visual">
             <div class="gf-hero__float-badge gf-hero__float-badge--1">
-                <span class="dot"></span> NAFDAC Registered
+                <span class="dot"></span> Properly Processed
             </div>
             <div class="gf-hero__img-wrap">
                 <div class="gf-hero__img-glow"></div>
@@ -177,7 +177,7 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
                 <?php endif; ?>
             </div>
             <div class="gf-hero__float-badge gf-hero__float-badge--2">
-                <span style="color:var(--gf-orange)">⭐</span> Real food. Real results.
+                <span style="color:var(--gf-orange)">⭐</span> No Bloating After Consumption
             </div>
         </div>
     </div>
@@ -188,11 +188,11 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
      ==================================================== -->
 <div class="gf-trustbar">
     <div class="gf-trustbar__track">
-        <span class="gf-trustbar__item"><span class="icon">🇳🇬</span> 100% Nigerian Ingredients</span>
+        <span class="gf-trustbar__item"><span class="icon">🌿</span> 100% Natural Ingredients</span>
         <span class="gf-trustbar__sep">✦</span>
         <span class="gf-trustbar__item"><span class="icon">🚫</span> No Hormones or Chemicals</span>
         <span class="gf-trustbar__sep">✦</span>
-        <span class="gf-trustbar__item"><span class="icon">✅</span> NAFDAC Registered</span>
+        <span class="gf-trustbar__item"><span class="icon">🌙</span> Maca Root for Curves</span>
         <span class="gf-trustbar__sep">✦</span>
         <span class="gf-trustbar__item"><span class="icon">📍</span> Made in Port Harcourt</span>
         <span class="gf-trustbar__sep">✦</span>
@@ -200,11 +200,11 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
         <span class="gf-trustbar__sep">✦</span>
         <span class="gf-trustbar__item"><span class="icon">🛡️</span> Satisfaction Guaranteed</span>
         <span class="gf-trustbar__sep">✦</span>
-        <span class="gf-trustbar__item"><span class="icon">🇳🇬</span> 100% Nigerian Ingredients</span>
+        <span class="gf-trustbar__item"><span class="icon">🌿</span> 100% Natural Ingredients</span>
         <span class="gf-trustbar__sep">✦</span>
         <span class="gf-trustbar__item"><span class="icon">🚫</span> No Hormones or Chemicals</span>
         <span class="gf-trustbar__sep">✦</span>
-        <span class="gf-trustbar__item"><span class="icon">✅</span> NAFDAC Registered</span>
+        <span class="gf-trustbar__item"><span class="icon">🌙</span> Maca Root for Curves</span>
         <span class="gf-trustbar__sep">✦</span>
         <span class="gf-trustbar__item"><span class="icon">📍</span> Made in Port Harcourt</span>
         <span class="gf-trustbar__sep">✦</span>
@@ -222,34 +222,34 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
     <div class="container">
 
         <div class="gf-why__header gf-reveal">
-            <div class="gf-section__label gf-section__label--brown">The Difference</div>
-            <h2 class="gf-why__title">The Science Behind<br><em>Real Nigerian Food</em></h2>
-            <p class="gf-why__sub">Every step of our process is designed to give your body what it truly needs — nothing more, nothing less.</p>
+            <div class="gf-section__label gf-section__label--brown">Not Your Regular Food Processing Vendor</div>
+            <h2 class="gf-why__title">With Our Products You Get All Of The<br><em>Nutrients, None Of The Discomforts.</em></h2>
+            <p class="gf-why__sub">Every step of our process is painstakingly designed to ensure proper digestion without food poisoning. Safe for babies above 6 months.</p>
         </div>
 
         <div class="gf-why__grid">
             <div class="gf-why__card gf-reveal gf-reveal-delay-1">
                 <span class="gf-why__icon">🧫</span>
                 <h3>Fermented &amp; Re-Dried</h3>
-                <p>Our grains are soaked, fermented, and carefully re-dried — a process that reduces anti-nutrients and makes the food easier for your body to absorb.</p>
+                <p>Our grains are soaked, fermented, and carefully re-dried. This process reduces anti-nutrients and makes the food easier for your body to absorb.</p>
                 <span class="gf-why__badge">Science-backed</span>
             </div>
             <div class="gf-why__card gf-reveal gf-reveal-delay-2">
                 <span class="gf-why__icon">⚡</span>
                 <h3>Higher Bioavailability</h3>
-                <p>Fermentation breaks down phytic acid — which normally blocks nutrient absorption. So you actually get the protein and minerals from every spoon.</p>
+                <p>Fermentation breaks down phytic acid, which normally blocks nutrient absorption. With our properly fermented products, you're getting optimal nutrition per spoon.</p>
                 <span class="gf-why__badge">Clinically proven</span>
             </div>
             <div class="gf-why__card gf-reveal gf-reveal-delay-3">
                 <span class="gf-why__icon">⚖️</span>
                 <h3>Intentional Proportions</h3>
-                <p>Every ingredient has a purpose and a precise ratio. Nothing is added for bulk. Everything is there because your body needs it — in the right amount.</p>
+                <p>Every ingredient has a purpose and a precise ratio. Nothing is added for bulk. Everything is added in the right amount the body needs.</p>
                 <span class="gf-why__badge">Precision formulated</span>
             </div>
             <div class="gf-why__card gf-reveal gf-reveal-delay-4">
                 <span class="gf-why__icon">🇳🇬</span>
-                <h3>Nigerian Ingredients</h3>
-                <p>We source from local Nigerian farmers. Your body has evolved to thrive on these foods. We just make them easier to consume consistently.</p>
+                <h3>Natural Ingredients</h3>
+                <p>We use only natural ingredients sourced from trusted vendors. There's no preservative or chemicals added.</p>
                 <span class="gf-why__badge">Locally sourced</span>
             </div>
         </div>
@@ -269,7 +269,7 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
                 For the guys who want to <span class="line-orange">build real muscle.</span><br>
                 For the girls who want <span style="color:var(--gf-green)">curves without the belly fat.</span>
             </h2>
-            <p class="gf-section__sub">Flip any card to see exactly what goes inside — every ingredient, every percentage, nothing hidden.</p>
+            <p class="gf-section__sub">Flip any card to see the ingredients in each product.</p>
         </div>
 
         <div class="gf-products__grid gf-flip-grid">
@@ -286,7 +286,7 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
                             <?php else : ?>
                                 <div class="gf-flip__img-placeholder"><span style="font-size:3.5rem">💪</span><span>Muscle Fuel Meal</span></div>
                             <?php endif; ?>
-                            <span class="gf-flip__tag gf-flip__tag--orange">Muscle Builder</span>
+                            <span class="gf-flip__tag gf-flip__tag--orange">High Protein</span>
                         </div>
                         <div class="gf-flip__body">
                             <h3 class="gf-flip__name"><?php echo esc_html($mf['title']); ?></h3>
@@ -383,7 +383,7 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
                     <div class="gf-flip__back">
                         <div class="gf-flip__back-header">
                             <div class="gf-flip__back-title">Ingredient Breakdown</div>
-                            <div class="gf-flip__back-sub">Complete TomBrown · 13 ingredients</div>
+                            <div class="gf-flip__back-sub">Complete Diet TomBrown · 13 ingredients</div>
                         </div>
                         <div class="gf-flip__ing-list">
                             <?php foreach ($tb_ings as $ing) : ?>
@@ -422,14 +422,14 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
 
         <div class="gf-process__header gf-reveal">
             <div class="gf-section__label gf-section__label--muted">How We Make It</div>
-            <h2 class="gf-process__title">From Farm to Your Cup —<br>Every Step, Intentional.</h2>
+            <h2 class="gf-process__title">Our Healthy<br>Grain-Processing Pipeline</h2>
         </div>
 
         <div class="gf-process__steps">
             <div class="gf-process__step gf-reveal gf-reveal-delay-1">
                 <div class="gf-process__num">01</div>
                 <div class="gf-process__step-title">Ingredient Sourcing</div>
-                <p class="gf-process__step-desc">We source directly from trusted Nigerian farms — no middlemen, no compromises on freshness or quality.</p>
+                <p class="gf-process__step-desc">We source directly from trusted vendors to ensure no compromises on freshness or quality.</p>
             </div>
             <div class="gf-process__connector"></div>
             <div class="gf-process__step gf-reveal gf-reveal-delay-2">
@@ -441,7 +441,7 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
             <div class="gf-process__step gf-reveal gf-reveal-delay-3">
                 <div class="gf-process__num">03</div>
                 <div class="gf-process__step-title">Re-Drying</div>
-                <p class="gf-process__step-desc">After fermentation, we carefully re-dry the grains at controlled temperatures — preserving nutrients, extending shelf life.</p>
+                <p class="gf-process__step-desc">After fermentation, we carefully re-dry the grains at controlled temperatures in order to preserve nutrients and extend shelf life.</p>
             </div>
             <div class="gf-process__connector"></div>
             <div class="gf-process__step gf-reveal gf-reveal-delay-4">
@@ -453,7 +453,7 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
             <div class="gf-process__step gf-reveal" style="transition-delay:0.5s">
                 <div class="gf-process__num">05</div>
                 <div class="gf-process__step-title">Hygienic Packaging</div>
-                <p class="gf-process__step-desc">Sealed in food-safe packaging in our NAFDAC-registered facility — from our hands to yours, clean and uncontaminated.</p>
+                <p class="gf-process__step-desc">Sealed in food-safe packaging so it comes to you clean and uncontaminated.</p>
             </div>
         </div>
 
@@ -521,8 +521,8 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
     <div class="container">
         <div class="gf-guarantee__inner">
             <div class="gf-guarantee__icon">🛡️</div>
-            <h2 class="gf-guarantee__title">Zero Risk. 100% Confidence.</h2>
-            <p class="gf-guarantee__text">If you experience any negative reaction after using our products, we'll refund you in full — no long questions asked. We stand behind everything we put in our blends.</p>
+            <h2 class="gf-guarantee__title">Here's Our Assurance</h2>
+            <p class="gf-guarantee__text">If you experience any negative reaction after using our products, we'll refund you in full. Yes, we believe in our products that much.</p>
             <a href="<?php echo esc_url($mf_wa_url); ?>" class="gf-btn gf-btn-guarantee" target="_blank" rel="noopener">
                 Order Now via WhatsApp
             </a>
