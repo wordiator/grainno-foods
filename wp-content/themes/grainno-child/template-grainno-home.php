@@ -265,9 +265,9 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
 
         <div class="gf-products__header gf-reveal">
             <div class="gf-section__label">Our Products</div>
-            <h2 class="gf-section__title">
-                For the guys who want to <span class="line-orange">build real muscle.</span><br>
-                For the girls who want <span style="color:var(--gf-green)">curves without the belly fat.</span>
+            <h2 class="gf-section__title" style="text-align:center;">
+                <span style="display:block;">For the guys who want to <span style="color:var(--gf-orange)">build real muscle.</span></span>
+                <span style="display:block;">For the girls who want <span style="color:var(--gf-green)">curves without the belly fat.</span></span>
             </h2>
             <p class="gf-section__sub">Flip any card to see the ingredients in each product.</p>
         </div>
