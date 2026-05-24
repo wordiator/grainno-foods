@@ -137,6 +137,16 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
                 <span class="line-orange">Build the Body</span>
                 <span class="line-green">You Want.</span>
             </h1>
+            <div class="gf-hero__visual--mobile">
+                <div class="gf-hero__img-wrap">
+                    <div class="gf-hero__img-glow"></div>
+                    <?php if ($hero_image_url) : ?>
+                        <img src="<?php echo esc_url($hero_image_url); ?>" alt="Grainno Foods" loading="eager">
+                    <?php else : ?>
+                        <div class="gf-hero__img-placeholder"><span style="font-size:3rem;">🌾</span><span>Add hero image in Customizer</span></div>
+                    <?php endif; ?>
+                </div>
+            </div>
             <p class="gf-hero__sub"><?php echo esc_html($hero_sub); ?></p>
             <div class="gf-hero__ctas">
                 <a href="#gf-products" class="gf-btn gf-btn-primary">
@@ -161,7 +171,7 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
             </div>
         </div>
 
-        <div class="gf-hero__visual">
+        <div class="gf-hero__visual gf-hero__visual--desktop">
             <div class="gf-hero__float-badge gf-hero__float-badge--1">
                 <span class="dot"></span> Properly Processed
             </div>
@@ -296,10 +306,10 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
                                 <span class="gf-flip__macro-chip"><?php echo esc_html($mf['calories']); ?></span>
                                 <span class="gf-flip__macro-chip">per 100g</span>
                             </div>
+                            <div class="gf-flip__price">₦6,000</div>
                             <div class="gf-flip__size-row">
-                                <button class="gf-flip__size active">500g</button>
-                                <button class="gf-flip__size">1kg</button>
-                                <button class="gf-flip__size">2kg</button>
+                                <button class="gf-flip__size active" data-price="6,000">500g</button>
+                                <button class="gf-flip__size" data-price="10,000">1kg</button>
                             </div>
                             <div class="gf-flip__actions">
                                 <a href="<?php echo esc_url($mf['link']); ?>" class="gf-btn gf-btn-primary gf-flip__cta">
@@ -364,10 +374,10 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
                                 <span class="gf-flip__macro-chip"><?php echo esc_html($tb['calories']); ?></span>
                                 <span class="gf-flip__macro-chip">per 100g</span>
                             </div>
+                            <div class="gf-flip__price">₦6,000</div>
                             <div class="gf-flip__size-row">
-                                <button class="gf-flip__size active">500g</button>
-                                <button class="gf-flip__size">1kg</button>
-                                <button class="gf-flip__size">2kg</button>
+                                <button class="gf-flip__size active" data-price="6,000">500g</button>
+                                <button class="gf-flip__size" data-price="10,000">1kg</button>
                             </div>
                             <div class="gf-flip__actions">
                                 <a href="<?php echo esc_url($tb['link']); ?>" class="gf-btn gf-btn-green gf-flip__cta" style="padding:13px 24px;font-size:0.9rem;flex:1;">

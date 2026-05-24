@@ -165,10 +165,14 @@
         e.stopPropagation(); // let link navigate, don't flip back
     });
 
-    /* Size pill active state */
+    /* Size pill active state + price update */
     $(document).on('click', '.gf-flip__size', function () {
         $(this).siblings('.gf-flip__size').removeClass('active');
         $(this).addClass('active');
+        var price = $(this).data('price');
+        if (price) {
+            $(this).closest('.gf-flip__body').find('.gf-flip__price').text('₦' + price);
+        }
     });
 
     /* ============================================================

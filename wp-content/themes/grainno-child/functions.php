@@ -165,6 +165,14 @@ add_action('wp_ajax_grainno_get_cart_data', 'grainno_ajax_get_cart_data');
 add_action('wp_ajax_nopriv_grainno_get_cart_data', 'grainno_ajax_get_cart_data');
 
 /* ============================================================
+   OVERRIDE WORDPRESS ADMIN BAR MARGIN (runs after WP injects it)
+   ============================================================ */
+function grainno_kill_admin_bar_margin() {
+    echo '<style>html{margin-top:0!important;}body,body.admin-bar{margin-top:0!important;padding-top:0!important;}</style>';
+}
+add_action('wp_head', 'grainno_kill_admin_bar_margin', 99);
+
+/* ============================================================
    BODY CLASSES
    ============================================================ */
 function grainno_body_classes($classes) {
