@@ -7,7 +7,9 @@ defined('ABSPATH') || exit;
 get_header();
 
 $hero_image_id  = get_theme_mod('grainno_hero_image');
-$hero_image_url = $hero_image_id ? wp_get_attachment_image_url($hero_image_id, 'large') : '';
+$hero_image_url = $hero_image_id
+    ? wp_get_attachment_image_url($hero_image_id, 'large')
+    : get_stylesheet_directory_uri() . '/assets/images/hero.png';
 $hero_sub       = get_theme_mod('grainno_hero_sub', "Greek god shoulders, six packs, and figure-8 curves start in your kitchen, not on the gym floor.");
 
 function grainno_find_product($slug, $title_fallback) {
@@ -291,11 +293,10 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
                     <!-- Front -->
                     <div class="gf-flip__front">
                         <div class="gf-flip__img-area">
-                            <?php if ($mf['img_med']) : ?>
-                                <img src="<?php echo esc_url($mf['img_med']); ?>" alt="<?php echo esc_attr($mf['title']); ?>" loading="lazy">
-                            <?php else : ?>
-                                <div class="gf-flip__img-placeholder"><span style="font-size:3.5rem">💪</span><span>Muscle Fuel Meal</span></div>
-                            <?php endif; ?>
+                            <?php
+                                $mf_img = $mf['img_med'] ?: get_stylesheet_directory_uri() . '/assets/images/muscle-fuel.png';
+                            ?>
+                            <img src="<?php echo esc_url($mf_img); ?>" alt="<?php echo esc_attr($mf['title']); ?>" loading="lazy">
                             <span class="gf-flip__tag gf-flip__tag--orange">High Protein</span>
                         </div>
                         <div class="gf-flip__body">
@@ -359,11 +360,10 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
                     <!-- Front -->
                     <div class="gf-flip__front">
                         <div class="gf-flip__img-area">
-                            <?php if ($tb['img_med']) : ?>
-                                <img src="<?php echo esc_url($tb['img_med']); ?>" alt="<?php echo esc_attr($tb['title']); ?>" loading="lazy">
-                            <?php else : ?>
-                                <div class="gf-flip__img-placeholder"><span style="font-size:3.5rem">🥣</span><span>Complete TomBrown</span></div>
-                            <?php endif; ?>
+                            <?php
+                                $tb_img = $tb['img_med'] ?: get_stylesheet_directory_uri() . '/assets/images/tombrown.png';
+                            ?>
+                            <img src="<?php echo esc_url($tb_img); ?>" alt="<?php echo esc_attr($tb['title']); ?>" loading="lazy">
                             <span class="gf-flip__tag gf-flip__tag--green">Complete Nutrition</span>
                         </div>
                         <div class="gf-flip__body">
