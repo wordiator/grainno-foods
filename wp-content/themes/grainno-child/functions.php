@@ -8,27 +8,6 @@ add_action('wp_head', function () {
     echo '<style>html,body{overflow-x:hidden!important;max-width:100vw!important;}</style>';
 }, 9999);
 
-/* Temp: list ALL elements wider than viewport */
-add_action('wp_footer', function () {
-    echo '<script>
-window.addEventListener("load", function() {
-    var w = document.documentElement.clientWidth;
-    var culprits = [];
-    document.querySelectorAll("*").forEach(function(el) {
-        var r = el.getBoundingClientRect();
-        if (r.right > w + 2) {
-            culprits.push(el.tagName.toLowerCase() + (el.id?"#"+el.id:"") + (el.className?" ."+el.className.toString().replace(/\s+/g,".").substring(0,40):"") + " right=" + Math.round(r.right));
-        }
-    });
-    if (culprits.length) {
-        var d = document.createElement("div");
-        d.style = "position:fixed;top:0;left:0;right:0;background:#900;color:#fff;z-index:999999;padding:8px;font-size:10px;word-break:break-all;max-height:40vh;overflow-y:auto;";
-        d.innerHTML = "<b>OVERFLOW (viewport="+w+"px):</b><br>" + culprits.join("<br>");
-        document.body.appendChild(d);
-    }
-});
-</script>';
-}, 9999);
 
 
 /* ============================================================
