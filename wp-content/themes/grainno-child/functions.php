@@ -8,6 +8,31 @@ add_action('wp_head', function () {
     echo '<style>html,body{overflow-x:hidden!important;max-width:100vw!important;}</style>';
 }, 9999);
 
+/* TEMP: overflow debugger v3 — shows ALL culprits, grouped by section */
+add_action('wp_footer', function () { ?>
+<style>
+#gf-dbg{position:fixed;bottom:0;left:0;right:0;background:rgba(180,0,0,.92);color:#fff;font:11px/1.4 monospace;padding:8px;z-index:99999;max-height:60vh;overflow-y:auto;word-break:break-all;}
+</style>
+<div id="gf-dbg">CHECKING…</div>
+<script>
+(function(){
+  var vw = document.documentElement.clientWidth;
+  var out = [];
+  document.querySelectorAll('*').forEach(function(el){
+    var r = el.getBoundingClientRect();
+    if(r.right > vw + 2){
+      var cls = (el.className && typeof el.className === 'string') ? el.className.trim().split(/\s+/).slice(0,3).join('.') : el.tagName;
+      var par = el.parentElement ? ((el.parentElement.className && typeof el.parentElement.className==='string') ? el.parentElement.className.trim().split(/\s+/)[0] : el.parentElement.tagName) : '';
+      out.push('['+par+'] '+cls+' R='+Math.round(r.right)+' W='+Math.round(r.width));
+    }
+  });
+  document.getElementById('gf-dbg').innerHTML = out.length
+    ? '<b>OVERFLOW ('+out.length+'):</b><br>'+out.join('<br>')
+    : '<b style="color:#0f0">NO OVERFLOW ✓</b>';
+})();
+</script>
+<?php }, 99);
+
 
 
 
