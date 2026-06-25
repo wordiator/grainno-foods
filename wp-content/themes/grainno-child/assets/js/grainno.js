@@ -210,6 +210,13 @@
         buildVariantPills();
     });
 
+    /* Reset any horizontal scroll the compositor allows despite overflow-x:hidden */
+    window.addEventListener('scroll', function () {
+        if (window.scrollX !== 0) {
+            window.scrollTo(0, window.scrollY);
+        }
+    });
+
     $(document.body).on('wc_variation_form', function () {
         buildVariantPills();
     });

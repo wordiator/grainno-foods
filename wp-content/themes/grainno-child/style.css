@@ -2,7 +2,7 @@
 Theme Name:   Grainno Child
 Description:  Grainno Foods child theme for WooCommerce
 Template:     storefront
-Version:      3.3.9
+Version:      3.4.0
 Author:       Grainno Foods
 Text Domain:  grainno-child
 */
@@ -43,7 +43,7 @@ Text Domain:  grainno-child
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; overflow-x: hidden !important; max-width: 100%; touch-action: pan-y; }
+html { scroll-behavior: smooth; overflow-x: hidden !important; max-width: 100%; }
 
 body {
   background: var(--gf-black);
@@ -51,7 +51,6 @@ body {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  touch-action: pan-y;
 }
 
 h1,h2,h3,h4,h5,h6 { font-family: var(--font-display); line-height: 1.1; color: var(--gf-white); }
@@ -308,7 +307,6 @@ body.admin-bar { margin-top: 0 !important; padding-top: 0 !important; }
   align-items: center;
   overflow: hidden;
   background: var(--gf-black);
-  clip-path: inset(0);
 }
 
 /* Background orbs */
@@ -535,10 +533,6 @@ body.admin-bar { margin-top: 0 !important; padding-top: 0 !important; }
   border-bottom: 1px solid var(--gf-border-soft);
   padding: 20px 0;
   overflow: hidden;
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-  clip-path: inset(0);
 }
 .gf-trustbar__track {
   display: flex;
@@ -1713,15 +1707,6 @@ body.admin-bar { margin-top: 0 !important; padding-top: 0 !important; }
   .gf-hero__orb--2,
   .gf-hero__orb--3 { display: none; }
 
-  /* Trustbar: position:absolute removes track from normal flow so width:max-content
-     doesn't contribute to document scroll width. overflow:hidden clips it visually.
-     Give trustbar an explicit height so it doesn't collapse without in-flow children. */
-  .gf-trustbar { height: 64px; padding: 0; }
-  .gf-trustbar__track {
-    position: absolute;
-    top: 0; bottom: 0; left: 0;
-    align-items: center;
-  }
 }
 
 @media (max-width: 600px) {
