@@ -3,6 +3,11 @@ defined('ABSPATH') || exit;
 
 define('GRAINNO_WHATSAPP', '2348163874554');
 
+/* Kill horizontal scroll — inline so it loads after all plugin/theme CSS */
+add_action('wp_head', function () {
+    echo '<style>html,body{overflow-x:hidden!important;max-width:100vw!important;}</style>';
+}, 9999);
+
 /* ============================================================
    INCLUDES
    ============================================================ */
