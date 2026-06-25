@@ -449,9 +449,17 @@ body.admin-bar { margin-top: 0 !important; padding-top: 0 !important; }
 
 .gf-hero__img-wrap img {
   width: 100%;
-  border-radius: 28px;
+  border-radius: 0;
   position: relative;
   z-index: 2;
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, black 12%, black 58%, transparent 98%),
+    linear-gradient(to right,  transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, black 12%, black 58%, transparent 98%),
+    linear-gradient(to right,  transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-composite: destination-in;
+  mask-composite: intersect;
 }
 
 .gf-hero__img-glow {
@@ -2140,17 +2148,14 @@ body.admin-bar { margin-top: 0 !important; padding-top: 0 !important; }
   .gf-hero__visual--mobile {
     display: block;
     margin: 24px -4px;
-    border-radius: 16px;
-    overflow: hidden;
     position: relative;
   }
   .gf-hero__visual--mobile .gf-hero__img-wrap {
-    height: 260px;
-    border-radius: 16px;
-    overflow: hidden;
+    height: 280px;
+    overflow: visible;
   }
   .gf-hero__visual--mobile .gf-hero__img-wrap img {
-    width: 100%; height: 100%; object-fit: cover;
+    width: 100%; height: 100%; object-fit: cover; object-position: center top;
   }
   .gf-hero__visual--mobile .gf-hero__img-placeholder {
     height: 260px;
