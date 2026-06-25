@@ -8,6 +8,29 @@ add_action('wp_head', function () {
     echo '<style>html,body{overflow-x:hidden!important;max-width:100vw!important;}</style>';
 }, 9999);
 
+/* TEMP: overflow debugger v2 — shows culprits after clip-path fix */
+add_action('wp_footer', function () { ?>
+<style>
+#gf-dbg{position:fixed;bottom:0;left:0;right:0;background:rgba(180,0,0,.92);color:#fff;font:11px/1.4 monospace;padding:8px;z-index:99999;max-height:50vh;overflow-y:auto;}
+</style>
+<div id="gf-dbg">CHECKING…</div>
+<script>
+(function(){
+  var vw = document.documentElement.clientWidth;
+  var out = [];
+  document.querySelectorAll('*').forEach(function(el){
+    var r = el.getBoundingClientRect();
+    if(r.right > vw + 2){
+      out.push((el.className||el.tagName)+' right='+Math.round(r.right)+' w='+Math.round(r.width));
+    }
+  });
+  document.getElementById('gf-dbg').innerHTML = out.length
+    ? '<b>OVERFLOW ('+ out.length +'):</b><br>' + out.slice(0,20).join('<br>')
+    : '<b style="color:#0f0">NO OVERFLOW DETECTED ✓</b>';
+})();
+</script>
+<?php }, 99);
+
 
 
 /* ============================================================
