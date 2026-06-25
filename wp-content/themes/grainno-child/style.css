@@ -2,7 +2,7 @@
 Theme Name:   Grainno Child
 Description:  Grainno Foods child theme for WooCommerce
 Template:     storefront
-Version:      3.3.3
+Version:      3.3.4
 Author:       Grainno Foods
 Text Domain:  grainno-child
 */
@@ -533,6 +533,9 @@ body.admin-bar { margin-top: 0 !important; padding-top: 0 !important; }
   border-bottom: 1px solid var(--gf-border-soft);
   padding: 20px 0;
   overflow: hidden;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
 }
 .gf-trustbar__track {
   display: flex;
@@ -540,6 +543,7 @@ body.admin-bar { margin-top: 0 !important; padding-top: 0 !important; }
   align-items: center;
   animation: marquee 20s linear infinite;
   width: max-content;
+  will-change: transform;
 }
 @keyframes marquee {
   from { transform: translateX(0); }
