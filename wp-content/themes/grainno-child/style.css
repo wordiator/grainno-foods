@@ -43,7 +43,7 @@ Text Domain:  grainno-child
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; overflow-x: hidden !important; max-width: 100%; }
+html { scroll-behavior: smooth; overflow-x: clip !important; max-width: 100%; }
 
 body {
   background: var(--gf-black);
@@ -2167,6 +2167,16 @@ body.admin-bar { margin-top: 0 !important; padding-top: 0 !important; }
   .gf-hero__visual--mobile .gf-hero__img-wrap {
     height: 300px;
     overflow: hidden;
+    position: relative;
+  }
+  /* Fade overlay rendered by CPU (pseudo-element) so no GPU layer bleeds out */
+  .gf-hero__visual--mobile .gf-hero__img-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, var(--gf-black) 0%, transparent 18%, transparent 55%, var(--gf-black) 100%);
+    z-index: 3;
+    pointer-events: none;
   }
   .gf-hero__visual--mobile .gf-hero__img-wrap picture {
     display: block; width: 100%; height: 100%;
@@ -2174,11 +2184,9 @@ body.admin-bar { margin-top: 0 !important; padding-top: 0 !important; }
   .gf-hero__visual--mobile .gf-hero__img-wrap img {
     width: 100%; height: 100%;
     object-fit: cover; object-position: center 65%;
-    /* Side gradients in mask-image create GPU compositing layers that bleed
-       past overflow:hidden on Android Chrome — top/bottom fade only */
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 55%, transparent 100%);
-    mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 55%, transparent 100%);
-    transform: translateZ(0);
+    -webkit-mask-image: none;
+    mask-image: none;
+    transform: none;
   }
   .gf-hero__visual--mobile .gf-hero__img-placeholder {
     height: 260px;
