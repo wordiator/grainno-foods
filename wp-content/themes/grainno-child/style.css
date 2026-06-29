@@ -2210,4 +2210,30 @@ body.admin-bar { margin-top: 0 !important; padding-top: 0 !important; }
   .gf-flip.flipped .gf-flip__front { display: none; }
   .gf-flip.flipped .gf-flip__back { display: flex; }
   .gf-flip__img-area { height: 260px; }
+
+  /* ── Product card mobile overflow fix ── */
+  .gf-products { padding: 80px 0; }
+  .gf-products__grid {
+    width: 100%;
+    max-width: 100% !important;
+    margin: 0;
+    gap: 20px;
+  }
+  .gf-flip { width: 100%; min-width: 0; box-sizing: border-box; }
+  .gf-flip__front,
+  .gf-flip__back { width: 100%; min-width: 0; box-sizing: border-box; }
+  .gf-flip__body { padding: 16px 16px 18px; }
+  .gf-flip__actions { flex-wrap: wrap; gap: 8px; }
+  .gf-flip__cta {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 0.82rem !important;
+    padding: 11px 14px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .gf-flip__hint { font-size: 0.7rem; padding: 8px 10px; }
+  .gf-flip__name { font-size: 1.2rem; }
+  .gf-flip__macros-mini { gap: 4px; }
 }
