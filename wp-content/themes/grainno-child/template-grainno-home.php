@@ -132,7 +132,7 @@ $tb_wa_url = 'https://wa.me/' . $wa_number . '?text=' . rawurlencode("Hello Grai
 
     <div class="gf-hero__inner">
         <div>
-            <div class="gf-hero__badge">🇳🇬 Your No. 1 Healthy Good Plug</div>
+            <div class="gf-hero__badge">🇳🇬 Your No. 1 Health Food Plug</div>
             <h1 class="gf-hero__headline">
                 Eat Right.
                 <span class="line-orange">Build the Body</span>
