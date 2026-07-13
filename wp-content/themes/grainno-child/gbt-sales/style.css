@@ -220,6 +220,18 @@ html, body{background:#0d0d0d;}
   line-height:1.7;
 }
 .gbt-sales .media-ph.tall{min-height:26rem;}
+.gbt-sales .media-ph:has(img){
+  padding:0;
+  overflow:hidden;
+  border-style:solid;
+}
+.gbt-sales .media-ph img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:inherit;
+  display:block;
+}
 
 /* ---------- QUOTE CARDS (dress story) ---------- */
 .gbt-sales .quote-grid{
