@@ -17,11 +17,58 @@ add_action('wp_head', function () {
 require_once get_stylesheet_directory() . '/inc/customizer.php';
 require_once get_stylesheet_directory() . '/inc/whatsapp-cart.php';
 require_once get_stylesheet_directory() . '/inc/product-meta.php';
+require_once get_stylesheet_directory() . '/inc/gbt-editor.php';
 
 /* ============================================================
    ENQUEUE FONTS & SCRIPTS
    ============================================================ */
 function grainno_enqueue_assets() {
+    if (is_page_template('template-gbt-sales.php')) {
+        wp_enqueue_style(
+            'gbt-landing-fonts',
+            'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600..900;1,9..144,400..600&family=DM+Sans:wght@400..700&family=IBM+Plex+Mono:wght@400;500&display=swap',
+            [],
+            null
+        );
+        wp_enqueue_style(
+            'gbt-sales-style',
+            get_stylesheet_directory_uri() . '/gbt-sales/style.css',
+            ['gbt-landing-fonts'],
+            filemtime(get_stylesheet_directory() . '/gbt-sales/style.css')
+        );
+        wp_enqueue_script(
+            'gbt-sales-script',
+            get_stylesheet_directory_uri() . '/gbt-sales/script.js',
+            [],
+            filemtime(get_stylesheet_directory() . '/gbt-sales/script.js'),
+            true
+        );
+        return;
+    }
+
+    if (is_page_template('template-gbt-landing.php')) {
+        wp_enqueue_style(
+            'gbt-landing-fonts',
+            'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600..900;1,9..144,400..600&family=DM+Sans:wght@400..700&family=IBM+Plex+Mono:wght@400;500&display=swap',
+            [],
+            null
+        );
+        wp_enqueue_style(
+            'gbt-landing-style',
+            get_stylesheet_directory_uri() . '/gbt-landing/style.css',
+            ['gbt-landing-fonts'],
+            filemtime(get_stylesheet_directory() . '/gbt-landing/style.css')
+        );
+        wp_enqueue_script(
+            'gbt-landing-script',
+            get_stylesheet_directory_uri() . '/gbt-landing/script.js',
+            [],
+            filemtime(get_stylesheet_directory() . '/gbt-landing/script.js'),
+            true
+        );
+        return;
+    }
+
     wp_enqueue_style(
         'grainno-fonts',
         'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;600;700&display=swap',
@@ -78,6 +125,40 @@ function grainno_enqueue_assets() {
     ]);
 }
 add_action('wp_enqueue_scripts', 'grainno_enqueue_assets');
+
+/* GBT templates are standalone pages: strip every stylesheet the parent theme
+   and plugins force onto them (storefront, woocommerce, main site style.css),
+   keeping only GBT assets and the logged-in admin bar. */
+function grainno_gbt_style_isolation() {
+    if (!is_page_template(['template-gbt-sales.php', 'template-gbt-landing.php'])) {
+        return;
+    }
+    $keep = [
+        'gbt-landing-fonts', 'gbt-landing-style', 'gbt-sales-style',
+        'gbt-editor', 'admin-bar', 'dashicons',
+    ];
+    foreach ((array) wp_styles()->queue as $handle) {
+        if (!in_array($handle, $keep, true)) {
+            wp_dequeue_style($handle);
+            wp_deregister_style($handle);
+        }
+    }
+}
+add_action('wp_enqueue_scripts', 'grainno_gbt_style_isolation', 999);
+add_action('wp_print_styles', 'grainno_gbt_style_isolation', 999);
+
+/* Final gate: some plugins (WooCommerce blocks) re-enqueue styles through paths
+   the queue sweep can't reach, so filter the printed tag itself. */
+add_filter('style_loader_tag', function ($tag, $handle) {
+    if (!is_page_template(['template-gbt-sales.php', 'template-gbt-landing.php'])) {
+        return $tag;
+    }
+    $keep = [
+        'gbt-landing-fonts', 'gbt-landing-style', 'gbt-sales-style',
+        'gbt-editor', 'admin-bar', 'dashicons',
+    ];
+    return in_array($handle, $keep, true) ? $tag : '';
+}, 10, 2);
 
 /* ============================================================
    THEME SETUP
