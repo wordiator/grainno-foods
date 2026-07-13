@@ -38,7 +38,6 @@ $quiz_url = 'https://gbt.grainnofoods.com/quiz';
           <p class="cta-note" <?php gbt_attr('hero.note'); ?>><?php gbt_text('hero.note', 'Get a personalised body transformation routine based on your current body type and size.'); ?></p>
         </div>
       </div>
-      <div class="media-ph tall" <?php gbt_attr('hero.media', true); ?>><?php gbt_text('hero.media.caption', '[HERO IMAGE]<br>Woman in a fitted dress, confident in the mirror, or before/after style app mockup collage'); ?></div>
     </div>
   </section>
 

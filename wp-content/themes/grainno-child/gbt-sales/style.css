@@ -199,8 +199,6 @@ html, body{background:#0d0d0d;}
   max-width:26rem;
   text-wrap:balance;
 }
-.gbt-sales .hero .media-ph{width:100%;max-width:36rem;}
-
 /* image / screenshot placeholders */
 .gbt-sales .media-ph{
   border:1px dashed var(--line-strong);
