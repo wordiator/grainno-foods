@@ -132,3 +132,17 @@ add_action('wp_ajax_gbt_reset_content', function () {
     delete_post_meta($post_id, '_gbt_content');
     wp_send_json_success();
 });
+
+/* Expose _gbt_content via the REST API so overrides can be migrated between sites. */
+add_action('init', function () {
+    register_post_meta('page', '_gbt_content', [
+        'type'          => 'object',
+        'single'        => true,
+        'show_in_rest'  => [
+            'schema' => ['type' => 'object', 'additionalProperties' => true],
+        ],
+        'auth_callback' => function ($allowed, $meta_key, $post_id) {
+            return current_user_can('edit_page', $post_id);
+        },
+    ]);
+});
