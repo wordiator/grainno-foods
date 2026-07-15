@@ -135,7 +135,7 @@ function grainno_gbt_style_isolation() {
     }
     $keep = [
         'gbt-landing-fonts', 'gbt-landing-style', 'gbt-sales-style',
-        'gbt-editor', 'admin-bar', 'dashicons',
+        'gbt-editor', 'admin-bar', 'dashicons', 'cookieadmin-style',
     ];
     foreach ((array) wp_styles()->queue as $handle) {
         if (!in_array($handle, $keep, true)) {
@@ -155,7 +155,7 @@ add_filter('style_loader_tag', function ($tag, $handle) {
     }
     $keep = [
         'gbt-landing-fonts', 'gbt-landing-style', 'gbt-sales-style',
-        'gbt-editor', 'admin-bar', 'dashicons',
+        'gbt-editor', 'admin-bar', 'dashicons', 'cookieadmin-style',
     ];
     return in_array($handle, $keep, true) ? $tag : '';
 }, 10, 2);
