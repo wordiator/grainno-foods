@@ -30,12 +30,12 @@ $quiz_url = 'https://gbt.grainnofoods.com/quiz';
     <div class="hero-bg-overlay" aria-hidden="true"></div>
     <div class="wrap hero-grid">
       <div>
-        <span class="eyebrow" <?php gbt_attr('hero.eyebrow'); ?>><?php gbt_text('hero.eyebrow', 'Science-based fitness app designed to help African women'); ?></span>
-        <h1 <?php gbt_attr('hero.title'); ?>><?php gbt_text('hero.title', '<span class="hero-line1">Sweat in the Palour.</span> <span class="ankara-text hero-line2">Shutdown the Party.</span>'); ?></h1>
-        <p class="deck" <?php gbt_attr('hero.deck'); ?>><?php gbt_text('hero.deck', 'A body recomposition app for African women who want to grow their feminine features. Home workouts - no gym needed.'); ?></p>
+        <span class="eyebrow" <?php gbt_attr('hero.eyebrow'); ?>><?php gbt_text('hero.eyebrow', 'Science-based fitness app designed to SCULPT African women'); ?></span>
+        <h1 <?php gbt_attr('hero.title'); ?>><?php gbt_text('hero.title', 'Sweat in the Parlour. <span class="ankara-text">Shutdown the Party.</span>'); ?></h1>
+        <p class="deck" <?php gbt_attr('hero.deck'); ?>><?php gbt_text('hero.deck', 'A body-recomposition app for African women who want to enhance their feminine features. Home workouts. No gym needed.'); ?></p>
         <div class="hero-cta-block">
           <a class="btn btn-cta" id="gbtHeroCta" href="<?php echo esc_url($quiz_url); ?>" <?php gbt_attr('hero.cta'); ?>><?php gbt_text('hero.cta', 'Begin Your Body Transformation Journey'); ?></a>
-          <p class="cta-note" <?php gbt_attr('hero.note'); ?>><?php gbt_text('hero.note', 'Get a personalised body transformation routine based on your current body type and size.'); ?></p>
+          <p class="cta-note" <?php gbt_attr('hero.note'); ?>><?php gbt_text('hero.note', 'Get a personalised home workout routine tailored to your current body type and size.'); ?></p>
         </div>
       </div>
     </div>
@@ -45,7 +45,7 @@ $quiz_url = 'https://gbt.grainnofoods.com/quiz';
   <section class="band reveal">
     <div class="wrap">
       <div class="section-head">
-        <h2 <?php gbt_attr('dress.title'); ?>><?php gbt_text('dress.title', "Remember that dress? The one you tried on, then couldn't even look at yourself in the mirror?"); ?></h2>
+        <h2 <?php gbt_attr('dress.title'); ?>><?php gbt_text('dress.title', "Remember that dress? The one you tried on, then shook your head at the mirror?"); ?></h2>
       </div>
       <div class="story-copy">
         <p <?php gbt_attr('dress.p1'); ?>><?php gbt_text('dress.p1', "So you gave it to your sister. Or dumped at the back of the wardrobe. Or returned it to the vendor. And you consoled yourself, saying that's just the nature of your body; nothing can change it."); ?></p>
@@ -53,15 +53,15 @@ $quiz_url = 'https://gbt.grainnofoods.com/quiz';
       </div>
       <div class="quote-grid">
         <div class="quote-card reveal reveal-d1">
-          <q <?php gbt_attr('dress.q1'); ?>><?php gbt_text('dress.q1', "\"I bought a dress, put it on… I couldn't even look up in the mirror. A lot of outfits I've abandoned. A lot of dresses I admire on people but can't wear.\""); ?></q>
+          <q <?php gbt_attr('dress.q1'); ?>><?php gbt_text('dress.q1', "\"I bought a dress, put it on… I ended up giving it out. A lot of outfits I've abandoned. A lot of dresses I admire on people but can't wear.\""); ?></q>
           <div class="quote-tag" <?php gbt_attr('dress.q1tag'); ?>><?php gbt_text('dress.q1tag', 'Mirror-on-the-wall moment'); ?></div>
         </div>
         <div class="quote-card reveal reveal-d2">
-          <q <?php gbt_attr('dress.q2'); ?>><?php gbt_text('dress.q2', "\"When I lose weight, I lose my butt and hips. I don't know how to lose the weight and still keep my shape.\""); ?></q>
+          <q <?php gbt_attr('dress.q2'); ?>><?php gbt_text('dress.q2', "\"When I lose weight, I do so in places I don't want to. I don't know how to lose the weight and still keep my shape.\""); ?></q>
           <div class="quote-tag" <?php gbt_attr('dress.q2tag'); ?>><?php gbt_text('dress.q2tag', 'She was losing it all'); ?></div>
         </div>
         <div class="quote-card reveal reveal-d3">
-          <q <?php gbt_attr('dress.q3'); ?>><?php gbt_text('dress.q3', "\"I want to wear a bodycon and stop wearing shapewear. I just haven't found a plan I can actually trust.\""); ?></q>
+          <q <?php gbt_attr('dress.q3'); ?>><?php gbt_text('dress.q3', "\"It's painful to have clothes I can't wear. I just haven't found a plan I can actually trust.\""); ?></q>
           <div class="quote-tag" <?php gbt_attr('dress.q3tag'); ?>><?php gbt_text('dress.q3tag', 'Honestly, her trust issues are valid'); ?></div>
         </div>
       </div>
@@ -72,18 +72,18 @@ $quiz_url = 'https://gbt.grainnofoods.com/quiz';
   <section class="band band-raised reveal">
     <div class="wrap">
       <div class="section-head">
-        <h2 <?php gbt_attr('nature.title'); ?>><?php gbt_text('nature.title', "You Didn't Fail. The 7-Day Promises Did."); ?></h2>
+        <h2 <?php gbt_attr('nature.title'); ?>><?php gbt_text('nature.title', "You Didn't Fail. The Quick-Fix Promises Did."); ?></h2>
       </div>
       <div class="story-copy">
-        <p <?php gbt_attr('nature.p1'); ?>><?php gbt_text('nature.p1', "Your bumbum and curves are shaped by muscles. And muscles can't be grown in 7 days by anything you swallow; only by being trained and fed correctly."); ?></p>
+        <p <?php gbt_attr('nature.p1'); ?>><?php gbt_text('nature.p1', "Muscles shape your feminine features. And muscles can't be grown in a few days by anything you swallow; only by being trained and fed correctly."); ?></p>
         <p <?php gbt_attr('nature.p2'); ?>><?php gbt_text('nature.p2', "If Quick Fixes Worked, You'd Already Have the Body. You Need a Real Plan."); ?></p>
       </div>
       <div class="compare-grid">
         <div class="compare-card bad reveal reveal-d1">
           <h3 <?php gbt_attr('nature.badtitle'); ?>><?php gbt_text('nature.badtitle', '✗ What you were sold'); ?></h3>
           <ul class="compare-list" <?php gbt_attr('nature.badlist'); ?>><?php gbt_text('nature.badlist',
-            '<li>Pills &amp; syrups that gave you heartburn, or dried you up and flattened the very bum you wanted</li>' .
-            '<li>"7-day results" that scared you (rightly) about damaging your body</li>' .
+            "<li>Ingestibles that ends up giving you issues, and still don't work.&nbsp;</li>" .
+            '<li>"Sharp-sharp results" that scared you (rightly) about damaging your body</li>' .
             '<li>Months of gym with no structure, hence no progression, no result</li>' .
             '<li>Diets built for foreign bodies and foreign kitchens</li>'); ?></ul>
         </div>
@@ -107,7 +107,7 @@ $quiz_url = 'https://gbt.grainnofoods.com/quiz';
         <p class="lede" <?php gbt_attr('steps.lede'); ?>><?php gbt_text('steps.lede', "No more \"I don't know where to start.\" The app builds you a routine instantly."); ?></p>
       </div>
       <div class="steps">
-        <div class="step reveal reveal-d1"><div class="step-num">01</div><h3 <?php gbt_attr('steps.s1t'); ?>><?php gbt_text('steps.s1t', 'Take the quiz'); ?></h3><p <?php gbt_attr('steps.s1p'); ?>><?php gbt_text('steps.s1p', 'Takes less than 5 minutes. We identify your body type, size, and goal: grow curves, gain healthy weight, lose belly, or recomp. Then we calculate your exact daily calories &amp; protein while building your personalised workout routine.'); ?></p></div>
+        <div class="step reveal reveal-d1"><div class="step-num">01</div><h3 <?php gbt_attr('steps.s1t'); ?>><?php gbt_text('steps.s1t', 'Take the quiz'); ?></h3><p <?php gbt_attr('steps.s1p'); ?>><?php gbt_text('steps.s1p', 'Takes less than 5 minutes. We identify your body type, size, and goal: grow curves, gain healthy weight, or recomp. Then we calculate your exact daily calories &amp; protein while building your personalised workout routine.'); ?></p></div>
         <div class="step reveal reveal-d2"><div class="step-num">02</div><h3 <?php gbt_attr('steps.s2t'); ?>><?php gbt_text('steps.s2t', 'Pick your meals'); ?></h3><p <?php gbt_attr('steps.s2p'); ?>><?php gbt_text('steps.s2p', 'Choose from 250+ carefully curated Nigerian dishes you already eat: beans, egusi, moi moi, suya. Perfect for picky eaters because the plan is built ONLY from food you picked.'); ?></p></div>
         <div class="step reveal reveal-d3"><div class="step-num">03</div><h3 <?php gbt_attr('steps.s3t'); ?>><?php gbt_text('steps.s3t', 'Train. Track. Transform.'); ?></h3><p <?php gbt_attr('steps.s3p'); ?>><?php gbt_text('steps.s3p', 'Home or gym workouts matched to your goal, gram-perfect portions, streaks and reminders that keep you locked in.'); ?></p></div>
       </div>
@@ -199,10 +199,10 @@ $quiz_url = 'https://gbt.grainnofoods.com/quiz';
       <div class="media-ph tall" <?php gbt_attr('auth.media', true); ?>><?php gbt_text('auth.media.caption', '[PHOTO OF JULIUS]<br>Portrait: coaching or training setting'); ?></div>
       <div class="authority-copy">
         <span class="eyebrow" <?php gbt_attr('auth.eyebrow'); ?>><?php gbt_text('auth.eyebrow', 'Who built this, and why you can trust it'); ?></span>
-        <h2 <?php gbt_attr('auth.title'); ?>><?php gbt_text('auth.title', 'A Certified Human Anatomist With Science-Backed Fitness Experience'); ?></h2>
+        <h2 <?php gbt_attr('auth.title'); ?>><?php gbt_text('auth.title', 'A Human Anatomist With Science-Backed Fitness Experience'); ?></h2>
         <p <?php gbt_attr('auth.p1'); ?>><?php gbt_text('auth.p1', "I'm Julius, the person behind Grainno brand. I spent four years studying the human body and trained as a human anatomist, so I know exactly how glutes and other muscles grow, where your body stores fat, and why body recomposition is not as hard as you think."); ?></p>
         <p <?php gbt_attr('auth.p2'); ?>><?php gbt_text('auth.p2', 'As a self-trained digital marketer, I worked alongside an international fitness coach who specialises in transforming women, and gained access to the premium training systems he used to take ladies of every body type to their desired figures.'); ?></p>
-        <p <?php gbt_attr('auth.p3'); ?>><?php gbt_text('auth.p3', 'This app is those systems + current exercise science, built for African women and African food. This is not a magic pill or get-snatched-quick scheme. You can see inside every meal and every workout yourself.'); ?></p>
+        <p <?php gbt_attr('auth.p3'); ?>><?php gbt_text('auth.p3', 'This app is those systems + current exercise science, built for African women and African food. This is not a get-snatched-quick scheme. You can see inside every meal and every workout yourself.'); ?></p>
         <div class="badge-row" <?php gbt_attr('auth.badges'); ?>><?php gbt_text('auth.badges',
           '<span class="badge">Trained Human Anatomist</span>' .
           '<span class="badge">Female-focused coaching systems</span>' .
@@ -222,7 +222,7 @@ $quiz_url = 'https://gbt.grainnofoods.com/quiz';
       <div class="anchor-row" <?php gbt_attr('price.anchors'); ?>><?php gbt_text('price.anchors',
         '<span><s>₦20,000+</s> · 1 month of gym</span>' .
         '<span><s>₦30,000+</s> · one nutritionist consult</span>' .
-        '<span><s>₦15,000+</s> · pills &amp; syrups that failed</span>'); ?></div>
+        '<span><s>₦15,000+</s> · Other edibles that failed</span>'); ?></div>
       <div class="price-card reveal reveal-d1">
         <span class="price-ribbon" <?php gbt_attr('price.ribbon'); ?>><?php gbt_text('price.ribbon', 'FOUNDING-MEMBER PRICE'); ?></span>
         <div class="price-amount" <?php gbt_attr('price.amount'); ?>><?php gbt_text('price.amount', '₦5,000'); ?></div>
@@ -252,16 +252,16 @@ $quiz_url = 'https://gbt.grainnofoods.com/quiz';
       </div>
       <div class="faq-list">
         <div class="faq-item" data-open="true">
-          <button class="faq-q"><span <?php gbt_attr('faq.q1'); ?>><?php gbt_text('faq.q1', 'My family says a flat bum is just nature. Can it really change?'); ?></span><span class="plus">+</span></button>
-          <div class="faq-a"><div class="faq-a-inner" <?php gbt_attr('faq.a1'); ?>><?php gbt_text('faq.a1', "Glutes are muscles, the largest muscle group in your body. Muscles grow when trained progressively and fed enough protein. Genetics sets your starting point, not your ceiling. What's been missing is a structured plan, not different DNA."); ?></div></div>
+          <button class="faq-q"><span <?php gbt_attr('faq.q1'); ?>><?php gbt_text('faq.q1', 'My family says a flat nyash is just nature. Can it really change?'); ?></span><span class="plus">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner" <?php gbt_attr('faq.a1'); ?>><?php gbt_text('faq.a1', "Glutes (nyash) are muscles, the largest muscle group in your body. Muscles grow when trained progressively and fed enough protein. Genetics sets your starting point, not your ceiling. What's been missing is a structured plan, not different DNA."); ?></div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q"><span <?php gbt_attr('faq.q2'); ?>><?php gbt_text('faq.q2', 'Every time I lose weight, I lose my bum too. How is this different?'); ?></span><span class="plus">+</span></button>
+          <button class="faq-q"><span <?php gbt_attr('faq.q2'); ?>><?php gbt_text('faq.q2', 'Every time I lost weight, I lose my curves too. How is this different?'); ?></span><span class="plus">+</span></button>
           <div class="faq-a"><div class="faq-a-inner" <?php gbt_attr('faq.a2'); ?>><?php gbt_text('faq.a2', "Because crash diets shrink everything. Body recomposition is different: you train the glutes so your body keeps and builds that muscle while the belly reduces. That's exactly what your goal-matched plan is designed around."); ?></div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q"><span <?php gbt_attr('faq.q3'); ?>><?php gbt_text('faq.q3', 'Is this pills, tea, or anything I swallow?'); ?></span><span class="plus">+</span></button>
-          <div class="faq-a"><div class="faq-a-inner" <?php gbt_attr('faq.a3'); ?>><?php gbt_text('faq.a3', "Never. Grainno sells no pills, or syrups. Your transformation comes from training + food you already eat, in the right amounts. Nothing that can give you heartburn or \"dry you up.\""); ?></div></div>
+          <button class="faq-q"><span <?php gbt_attr('faq.q3'); ?>><?php gbt_text('faq.q3', 'Is this tea, or anything I swallow?'); ?></span><span class="plus">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner" <?php gbt_attr('faq.a3'); ?>><?php gbt_text('faq.a3', "Never. Grainno sells no tea or such things. Your transformation comes from training + food you already eat, in the right amounts. Nothing that can give you side effects."); ?></div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q"><span <?php gbt_attr('faq.q4'); ?>><?php gbt_text('faq.q4', "I'm a picky eater / I find it hard to eat much. Will this work?"); ?></span><span class="plus">+</span></button>
@@ -273,7 +273,7 @@ $quiz_url = 'https://gbt.grainnofoods.com/quiz';
         </div>
         <div class="faq-item">
           <button class="faq-q"><span <?php gbt_attr('faq.q6'); ?>><?php gbt_text('faq.q6', 'How fast will I see results?'); ?></span><span class="plus">+</span></button>
-          <div class="faq-a"><div class="faq-a-inner" <?php gbt_attr('faq.a6'); ?>><?php gbt_text('faq.a6', 'Honestly? Not in 7 days, and anyone promising that is who you should run from. With consistency, most women start noticing changes in how clothes fit within weeks, with visible changes building over months. The app tracks it all so you can see it happening.'); ?></div></div>
+          <div class="faq-a"><div class="faq-a-inner" <?php gbt_attr('faq.a6'); ?>><?php gbt_text('faq.a6', 'Honestly? Not in a few days, and anyone promising that is someone you should run from. With consistency, most women start noticing changes in how clothes fit within weeks, with visible changes building over months. The app tracks it all so you can see it happening.'); ?></div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q"><span <?php gbt_attr('faq.q7'); ?>><?php gbt_text('faq.q7', "I've been disappointed before. Why should I trust this?"); ?></span><span class="plus">+</span></button>
