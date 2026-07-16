@@ -7,15 +7,31 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Test cPanel UAPI connectivity (read-only)
+      - uses: actions/checkout@v4
+
+      - name: Sync two theme files directly via cPanel Fileman (bypasses broken git pull)
         env:
           TOKEN: ${{ secrets.CPANEL_API_TOKEN }}
         run: |
-          for HOST in "https://grainnofoods.com:2083" "https://68.65.122.224:2083"; do
-            echo "=== Trying $HOST ==="
+          HOST="https://grainnofoods.com:2083"
+          BASE_LIVE="/home/freehtbn/grainnofoods.com/wp-content/themes/grainno-child"
+          BASE_REPO="wp-content/themes/grainno-child"
+
+          sync_file() {
+            local relpath="$1"
+            local dir file
+            dir="$BASE_LIVE/$(dirname "$relpath")"
+            file="$(basename "$relpath")"
+            echo "=== Syncing $relpath -> $dir/$file ==="
             curl -sk -w "\nHTTP_STATUS:%{http_code}\n" \
               -H "Authorization: cpanel freehtbn:$TOKEN" \
-              "$HOST/execute/Fileman/list_files?dir=/home/freehtbn&types=file" \
-              | tail -c 800
+              --data-urlencode "dir=$dir" \
+              --data-urlencode "file=$file" \
+              --data-urlencode "content@$BASE_REPO/$relpath" \
+              "$HOST/execute/Fileman/save_file_content" \
+              | tail -c 500
             echo "---"
-          done
+          }
+
+          sync_file "template-gbt-sales.php"
+          sync_file "gbt-sales/style.css"
