@@ -1,0 +1,21 @@
+name: Bootstrap cPanel API Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test cPanel UAPI connectivity (read-only)
+        env:
+          TOKEN: ${{ secrets.CPANEL_API_TOKEN }}
+        run: |
+          for HOST in "https://grainnofoods.com:2083" "https://68.65.122.224:2083"; do
+            echo "=== Trying $HOST ==="
+            curl -sk -w "\nHTTP_STATUS:%{http_code}\n" \
+              -H "Authorization: cpanel freehtbn:$TOKEN" \
+              "$HOST/execute/Fileman/list_files?dir=/home/freehtbn&types=file" \
+              | tail -c 800
+            echo "---"
+          done
