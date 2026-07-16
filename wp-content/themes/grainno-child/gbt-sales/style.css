@@ -142,13 +142,6 @@ html, body{background:#0d0d0d;}
   0%,100%{box-shadow:0 0 22px rgba(255,164,9,0.3);}
   50%{box-shadow:0 0 40px rgba(255,164,9,0.5);}
 }
-.gbt-sales .btn-secondary{
-  background:transparent;
-  color:var(--ink);
-  border:1px solid var(--line-strong);
-}
-.gbt-sales .btn-secondary:hover{background:rgba(255,164,9,0.08);border-color:var(--orange);}
-
 /* ---------- HERO ---------- */
 .gbt-sales .hero{
   padding:4rem 0 5rem;
@@ -498,7 +491,6 @@ html, body{background:#0d0d0d;}
 .gbt-sales .price-list li{display:flex;gap:0.65rem;align-items:flex-start;}
 .gbt-sales .price-list li::before{content:'+';font-family:var(--font-mono);color:var(--green);flex:none;}
 .gbt-sales .price-card .btn{width:100%;margin-top:1.8rem;}
-.gbt-sales .price-card .btn + .btn{margin-top:0.75rem;}
 .gbt-sales .trust-chips{
   display:flex;
   flex-wrap:wrap;
