@@ -1,0 +1,23 @@
+name: Bootstrap cPanel API Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sync deploy-webhook.php directly via cPanel Fileman (bypasses broken git pull)
+        env:
+          TOKEN: ${{ secrets.CPANEL_API_TOKEN }}
+        run: |
+          HOST="https://grainnofoods.com:2083"
+          curl -sk -w "\nHTTP_STATUS:%{http_code}\n" \
+            -H "Authorization: cpanel freehtbn:$TOKEN" \
+            --data-urlencode "dir=/home/freehtbn/grainnofoods.com" \
+            --data-urlencode "file=deploy-webhook.php" \
+            --data-urlencode "content@deploy-webhook.php" \
+            "$HOST/execute/Fileman/save_file_content" \
+            | tail -c 500
