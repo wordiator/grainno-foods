@@ -1,0 +1,36 @@
+name: Bootstrap cPanel API Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Re-sync deploy-webhook.php (previous sync got overwritten by a stale cp -R before repo went public)
+        env:
+          TOKEN: ${{ secrets.CPANEL_API_TOKEN }}
+        run: |
+          HOST="https://grainnofoods.com:2083"
+          curl -sk -w "\nHTTP_STATUS:%{http_code}\n" \
+            -H "Authorization: cpanel freehtbn:$TOKEN" \
+            --data-urlencode "dir=/home/freehtbn/grainnofoods.com" \
+            --data-urlencode "file=deploy-webhook.php" \
+            --data-urlencode "content@deploy-webhook.php" \
+            "$HOST/execute/Fileman/save_file_content" \
+            | tail -c 500
+
+      - name: Also fix the server's local git clone directly so it's no longer stuck at the stale commit
+        env:
+          TOKEN: ${{ secrets.CPANEL_API_TOKEN }}
+        run: |
+          HOST="https://grainnofoods.com:2083"
+          # Re-set the origin remote URL (in case anything about it is stale) and note current state.
+          curl -sk -w "\nHTTP_STATUS:%{http_code}\n" \
+            -H "Authorization: cpanel freehtbn:$TOKEN" \
+            --data-urlencode "dir=/home/freehtbn/repositories/grainnofoods" \
+            --data-urlencode "file=.git/config" \
+            "$HOST/execute/Fileman/get_file_content" \
+            | tail -c 1500
