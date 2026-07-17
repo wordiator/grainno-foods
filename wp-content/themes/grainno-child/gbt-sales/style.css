@@ -222,12 +222,17 @@ html, body{background:#0d0d0d;}
   font-size:0.8rem;
   line-height:1.7;
 }
-.gbt-sales .media-ph.tall{min-height:26rem;border-radius:1.8rem;}
+.gbt-sales .media-ph.tall{min-height:26rem;border-radius:1.8rem;position:relative;}
 /* Julius's portrait: fully self-contained, deliberately isolated (:not(.tall)
    below) from the phone-screenshot .media-ph rules further down this file —
    those force width:81.9% + border-radius:0 !important, which is correct for
    an inset device mockup but wrong here, where the photo should bleed edge to
-   edge under a pulsing glow ring. */
+   edge under a pulsing glow ring. Image is absolutely positioned + inset:0
+   rather than width/height:100%, since the parent only has min-height (not a
+   definite height) and inherits align-items:center from the base .media-ph
+   flex rule — height:100% can't resolve against that, so the image was
+   falling back to its natural aspect ratio and leaving gaps top/bottom.
+   inset:0 pins it to the box exactly regardless of that ambiguity. */
 .gbt-sales .media-ph.tall:has(img){
   border:none;
   background:none;
@@ -235,6 +240,8 @@ html, body{background:#0d0d0d;}
   animation:gbt-portrait-glow-pulse 3s ease-in-out infinite;
 }
 .gbt-sales .media-ph.tall img{
+  position:absolute;
+  inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
