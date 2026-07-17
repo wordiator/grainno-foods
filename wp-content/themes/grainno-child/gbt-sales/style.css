@@ -184,17 +184,23 @@ html, body{background:#0d0d0d;}
   margin:1.4rem auto 0;
   max-width:20ch;
 }
+.gbt-sales .hero .eyebrow{
+  text-shadow:0 1px 10px rgba(0,0,0,0.55);
+}
 .gbt-sales .hero .deck{
   margin:1.5rem auto 0;
   font-size:1.1rem;
-  color:var(--ink-muted);
+  font-weight:500;
+  color:var(--ink);
+  text-shadow:0 2px 14px rgba(0,0,0,0.7);
   max-width:36rem;
 }
 .gbt-sales .hero-cta-block{margin-top:2.4rem;}
 .gbt-sales .cta-note{
   margin:0.9rem auto 0;
   font-size:0.85rem;
-  color:var(--ink-faint);
+  color:var(--ink-muted);
+  text-shadow:0 1px 10px rgba(0,0,0,0.6);
   max-width:26rem;
   text-wrap:balance;
 }
