@@ -223,11 +223,6 @@ html, body{background:#0d0d0d;}
   line-height:1.7;
 }
 .gbt-sales .media-ph.tall{min-height:26rem;}
-.gbt-sales .media-ph.tall:has(img){
-  border-radius:1.8rem;
-  border:1px solid rgba(255,164,9,0.45);
-  box-shadow:0 0 18px rgba(255,164,9,0.28),0 0 40px rgba(255,164,9,0.12);
-}
 
 /* ---------- QUOTE CARDS (dress story) ---------- */
 .gbt-sales .quote-grid{
