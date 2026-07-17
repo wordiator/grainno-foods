@@ -61,14 +61,4 @@
     }, {threshold:0});
     sio.observe(heroCta);
   }
-
-  /* embedded checkout — sized exactly by the child page itself (see
-     Checkout.jsx isEmbedded handling) instead of a guessed fixed height,
-     so it never shows an inner scrollbar */
-  window.addEventListener('message', function(e){
-    if(e.origin !== 'https://gbt.grainnofoods.com') return;
-    if(!e.data || e.data.type !== 'gbt-checkout-height') return;
-    var iframe = document.querySelector('.checkout-embed iframe');
-    if(iframe && e.data.height) iframe.style.height = e.data.height + 'px';
-  });
 })();

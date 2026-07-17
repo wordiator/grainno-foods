@@ -235,9 +235,7 @@ $checkout_url = 'https://gbt.grainnofoods.com/checkout';
           '<li>Prep-method calorie switching</li>' .
           '<li>Streaks, reminders &amp; progress tracking</li>' .
           '<li>Community + direct support from the Grainno team</li>'); ?></ul>
-        <div class="checkout-embed">
-          <iframe src="<?php echo esc_url($checkout_url); ?>" title="Complete your subscription" loading="lazy"></iframe>
-        </div>
+        <a class="btn btn-cta" href="<?php echo esc_url($checkout_url); ?>" <?php gbt_attr('price.cta'); ?>><?php gbt_text('price.cta', 'Begin Your Body Transformation Journey'); ?></a>
         <div class="trust-chips" <?php gbt_attr('price.chips'); ?>><?php gbt_text('price.chips',
           '<span class="chip">Regular community calls with Julius</span>' .
           '<span class="chip">24/7 access to Julius</span>' .
