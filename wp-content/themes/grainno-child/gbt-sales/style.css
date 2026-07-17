@@ -505,13 +505,11 @@ html, body{background:#0d0d0d;}
 }
 .gbt-sales .checkout-embed iframe{
   width:100%;
-  height:680px;
+  height:680px; /* fallback until the postMessage height arrives (script.js) */
+  min-height:680px;
   border:0;
   display:block;
   background:transparent;
-}
-@media(max-width:640px){
-  .gbt-sales .checkout-embed iframe{height:740px;}
 }
 .gbt-sales .trust-chips{
   display:flex;
