@@ -222,11 +222,28 @@ html, body{background:#0d0d0d;}
   font-size:0.8rem;
   line-height:1.7;
 }
-.gbt-sales .media-ph.tall{min-height:26rem;}
+.gbt-sales .media-ph.tall{min-height:26rem;border-radius:1.8rem;}
+/* Julius's portrait: fully self-contained, deliberately isolated (:not(.tall)
+   below) from the phone-screenshot .media-ph rules further down this file —
+   those force width:81.9% + border-radius:0 !important, which is correct for
+   an inset device mockup but wrong here, where the photo should bleed edge to
+   edge under a pulsing glow ring. */
 .gbt-sales .media-ph.tall:has(img){
-  border-radius:1.8rem;
   border:none;
-  box-shadow:0 0 22px rgba(255,164,9,0.35),0 0 48px rgba(255,164,9,0.16);
+  background:none;
+  padding:0;
+  animation:gbt-portrait-glow-pulse 3s ease-in-out infinite;
+}
+.gbt-sales .media-ph.tall img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:inherit;
+  display:block;
+}
+@keyframes gbt-portrait-glow-pulse{
+  0%,100%{box-shadow:0 0 0 2px rgba(255,164,9,0.55),0 0 22px rgba(255,164,9,0.35);}
+  50%{box-shadow:0 0 0 2px rgba(255,164,9,0.85),0 0 40px rgba(255,164,9,0.55);}
 }
 
 /* ---------- QUOTE CARDS (dress story) ---------- */
@@ -817,7 +834,7 @@ html, body{background:#0d0d0d;}
    selector), which loses to .band-light .media-ph's three classes — so this
    needs !important to actually win in every band context, not just source
    order. */
-.gbt-sales .media-ph:has(img){
+.gbt-sales .media-ph:has(img):not(.tall){
   min-height:0 !important;
   padding:0 !important;
   overflow:visible !important;
@@ -825,7 +842,7 @@ html, body{background:#0d0d0d;}
   border-radius:0 !important;
   background:none !important;
 }
-.gbt-sales .media-ph img{
+.gbt-sales .media-ph:not(.tall) img{
   width:81.9%;
   max-width:100%;
   height:auto;
