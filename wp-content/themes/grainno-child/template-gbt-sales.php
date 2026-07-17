@@ -301,7 +301,7 @@ $checkout_url = 'https://gbt.grainnofoods.com/checkout';
 
   <!-- STICKY MOBILE CTA -->
   <div class="sticky-cta" id="gbtStickyCta">
-    <a class="btn btn-cta" href="#pricing" <?php gbt_attr('sticky.cta'); ?>><?php gbt_text('sticky.cta', 'Begin Your Body Transformation Journey'); ?></a>
+    <a class="btn btn-cta" href="#pricing" <?php gbt_attr('sticky.cta'); ?>><?php gbt_text('sticky.cta', 'Start Now'); ?></a>
   </div>
 
 </div>
