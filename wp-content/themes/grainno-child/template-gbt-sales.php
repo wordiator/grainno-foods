@@ -8,7 +8,6 @@
  */
 defined('ABSPATH') || exit;
 
-$quiz_url = 'https://gbt.grainnofoods.com/quiz';
 $checkout_url = 'https://gbt.grainnofoods.com/checkout';
 ?>
 <!DOCTYPE html>
@@ -35,7 +34,7 @@ $checkout_url = 'https://gbt.grainnofoods.com/checkout';
         <h1 <?php gbt_attr('hero.title'); ?>><?php gbt_text('hero.title', 'Sweat in the Parlour. <span class="ankara-text">Shutdown the Party.</span>'); ?></h1>
         <p class="deck" <?php gbt_attr('hero.deck'); ?>><?php gbt_text('hero.deck', 'A body-recomposition app for African women who want to enhance their feminine features. Home workouts. No gym needed.'); ?></p>
         <div class="hero-cta-block">
-          <a class="btn btn-cta" id="gbtHeroCta" href="<?php echo esc_url($quiz_url); ?>" <?php gbt_attr('hero.cta'); ?>><?php gbt_text('hero.cta', 'Begin Your Body Transformation Journey'); ?></a>
+          <a class="btn btn-cta" id="gbtHeroCta" href="#pricing" <?php gbt_attr('hero.cta'); ?>><?php gbt_text('hero.cta', 'Begin Your Body Transformation Journey'); ?></a>
           <p class="cta-note" <?php gbt_attr('hero.note'); ?>><?php gbt_text('hero.note', 'Get a personalised home workout routine tailored to your current body type and size.'); ?></p>
         </div>
       </div>
@@ -236,7 +235,9 @@ $checkout_url = 'https://gbt.grainnofoods.com/checkout';
           '<li>Prep-method calorie switching</li>' .
           '<li>Streaks, reminders &amp; progress tracking</li>' .
           '<li>Community + direct support from the Grainno team</li>'); ?></ul>
-        <a class="btn btn-cta" href="<?php echo esc_url($checkout_url); ?>" <?php gbt_attr('price.cta'); ?>><?php gbt_text('price.cta', 'Begin Your Body Transformation Journey'); ?></a>
+        <div class="checkout-embed">
+          <iframe src="<?php echo esc_url($checkout_url); ?>" title="Complete your subscription" loading="lazy"></iframe>
+        </div>
         <div class="trust-chips" <?php gbt_attr('price.chips'); ?>><?php gbt_text('price.chips',
           '<span class="chip">Regular community calls with Julius</span>' .
           '<span class="chip">24/7 access to Julius</span>' .
@@ -289,7 +290,7 @@ $checkout_url = 'https://gbt.grainnofoods.com/checkout';
     <div class="wrap">
       <h2 <?php gbt_attr('final.title'); ?>><?php gbt_text('final.title', 'That dress you gave away? <span class="ankara-text">You\'re buying it back.</span>'); ?></h2>
       <p class="lede" <?php gbt_attr('final.lede'); ?>><?php gbt_text('final.lede', 'December parties are only months away, and muscle takes months, not days. The women who shut down December start now: a plan built from your body and your food, in your room.'); ?></p>
-      <a class="btn btn-cta" href="<?php echo esc_url($quiz_url); ?>" <?php gbt_attr('final.cta'); ?>><?php gbt_text('final.cta', "I'm Ready to Transform my Body"); ?></a>
+      <a class="btn btn-cta" href="#pricing" <?php gbt_attr('final.cta'); ?>><?php gbt_text('final.cta', "I'm Ready to Transform my Body"); ?></a>
     </div>
   </section>
 
@@ -302,7 +303,7 @@ $checkout_url = 'https://gbt.grainnofoods.com/checkout';
 
   <!-- STICKY MOBILE CTA -->
   <div class="sticky-cta" id="gbtStickyCta">
-    <a class="btn btn-cta" href="<?php echo esc_url($quiz_url); ?>" <?php gbt_attr('sticky.cta'); ?>><?php gbt_text('sticky.cta', 'Begin Your Body Transformation Journey'); ?></a>
+    <a class="btn btn-cta" href="#pricing" <?php gbt_attr('sticky.cta'); ?>><?php gbt_text('sticky.cta', 'Begin Your Body Transformation Journey'); ?></a>
   </div>
 
 </div>
