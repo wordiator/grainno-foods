@@ -491,19 +491,24 @@ html, body{background:#0d0d0d;}
 .gbt-sales .price-list li{display:flex;gap:0.65rem;align-items:flex-start;}
 .gbt-sales .price-list li::before{content:'+';font-family:var(--font-mono);color:var(--green);flex:none;}
 .gbt-sales .price-card .btn{width:100%;margin-top:1.8rem;}
+/* Bleeds to the price-card's full edges (cancelling its side padding)
+   instead of sitting boxed-in, so it reads as part of the card rather
+   than a widget dropped on top of it. The iframe itself is transparent
+   (see Checkout.jsx isEmbedded handling) so the card's own background
+   shows straight through. */
 .gbt-sales .checkout-embed{
-  width:100%;
+  width:calc(100% + 4.4rem);
   margin-top:1.8rem;
-  border-radius:1rem;
+  margin-left:-2.2rem;
+  margin-right:-2.2rem;
   overflow:hidden;
-  border:1px solid var(--line-strong);
-  background:#0d0d0d;
 }
 .gbt-sales .checkout-embed iframe{
   width:100%;
   height:680px;
   border:0;
   display:block;
+  background:transparent;
 }
 @media(max-width:640px){
   .gbt-sales .checkout-embed iframe{height:740px;}
