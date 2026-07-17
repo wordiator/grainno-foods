@@ -196,7 +196,7 @@ $checkout_url = 'https://gbt.grainnofoods.com/checkout';
   <!-- SECTION 9 - AUTHORITY -->
   <section class="band band-raised reveal">
     <div class="wrap authority-grid">
-      <div class="media-ph tall" <?php gbt_attr('auth.media', true); ?>><?php gbt_text('auth.media.caption', '[PHOTO OF JULIUS]<br>Portrait: coaching or training setting'); ?></div>
+      <div class="media-ph tall" <?php gbt_attr('auth.media', true); ?>><img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/gbt-sales/julius.webp'); ?>" alt="Julius, founder of Grainno"></div>
       <div class="authority-copy">
         <span class="eyebrow" <?php gbt_attr('auth.eyebrow'); ?>><?php gbt_text('auth.eyebrow', 'Who built this, and why you can trust it'); ?></span>
         <h2 <?php gbt_attr('auth.title'); ?>><?php gbt_text('auth.title', 'A Human Anatomist With Science-Backed Fitness Experience'); ?></h2>
