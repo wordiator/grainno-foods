@@ -9,6 +9,19 @@
 defined('ABSPATH') || exit;
 
 $checkout_url = 'https://gbt.grainnofoods.com/checkout';
+
+// Forward utm_* params from this landing page's own URL (e.g. a TikTok
+// linktree or ads click) onto the checkout link, so attribution survives
+// the hop to the app's subdomain — see /api/checkout/init on the app side.
+$utm_params = [];
+foreach (['utm_source', 'utm_medium', 'utm_campaign'] as $utm_key) {
+    if (!empty($_GET[$utm_key])) {
+        $utm_params[$utm_key] = sanitize_text_field(wp_unslash($_GET[$utm_key]));
+    }
+}
+if ($utm_params) {
+    $checkout_url = add_query_arg($utm_params, $checkout_url);
+}
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
