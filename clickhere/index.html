@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grainno — Links</title>
+  <meta name="description" content="Grainno Body Transformation — your links hub." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='46' fill='none' viewBox='0 0 48 46'%3E%3Cpath fill='%23863bff' d='M25.946 44.938c-.664.845-2.021.375-2.021-.698V33.937a2.26 2.26 0 0 0-2.262-2.262H10.287c-.92 0-1.456-1.04-.92-1.788l7.48-10.471c1.07-1.497 0-3.578-1.842-3.578H1.237c-.92 0-1.456-1.04-.92-1.788L10.013.474c.214-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.471c-1.07 1.498 0 3.579 1.842 3.579h11.377c.943 0 1.473 1.088.89 1.83L25.947 44.94z'/%3E%3C/svg%3E" type="image/svg+xml" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple:      #863bff;
+      --purple-dim:  #5b24b5;
+      --purple-glow: rgba(134, 59, 255, 0.35);
+      --cyan:        #47bfff;
+      --bg:          #07060f;
+      --surface:     rgba(255,255,255,0.04);
+      --border:      rgba(255,255,255,0.08);
+      --text:        #f0ecff;
+      --muted:       rgba(240,236,255,0.45);
+    }
+
+    html, body {
+      min-height: 100%;
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── background glow orbs ── */
+    body::before,
+    body::after {
+      content: '';
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(100px);
+      z-index: 0;
+    }
+    body::before {
+      width: 480px; height: 480px;
+      background: radial-gradient(circle, rgba(134,59,255,0.18) 0%, transparent 70%);
+      top: -120px; left: 50%;
+      transform: translateX(-50%);
+    }
+    body::after {
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(71,191,255,0.1) 0%, transparent 70%);
+      bottom: 60px; right: -80px;
+    }
+
+    /* ── layout ── */
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px 64px;
+    }
+
+    /* ── logo + header ── */
+    .brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 12px;
+    }
+
+    .logo-wrap {
+      width: 72px; height: 72px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 20px;
+      background: rgba(134,59,255,0.12);
+      border: 1px solid rgba(134,59,255,0.25);
+      box-shadow:
+        0 0 0 1px rgba(134,59,255,0.1),
+        0 0 28px rgba(134,59,255,0.3),
+        0 0 56px rgba(134,59,255,0.12);
+    }
+
+    .logo-wrap svg { width: 42px; height: 40px; }
+
+    .wordmark {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffffff 30%, #c9a8ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: 0.3px;
+      text-align: center;
+      line-height: 1.55;
+      max-width: 260px;
+      margin-top: 4px;
+      margin-bottom: 40px;
+    }
+
+    /* ── divider ── */
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--purple), transparent);
+      border-radius: 2px;
+      margin: 0 auto 40px;
+    }
+
+    /* ── buttons ── */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 24px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.1px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      width: 100%;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      position: relative;
+      overflow: hidden;
+      outline: none;
+    }
+
+    /* active WhatsApp button */
+    .btn-active {
+      background: linear-gradient(135deg, #25d366 0%, #1dab55 100%);
+      color: #fff;
+      box-shadow:
+        0 0 16px rgba(37, 211, 102, 0.35),
+        0 4px 24px rgba(37, 211, 102, 0.2),
+        inset 0 1px 0 rgba(255,255,255,0.15);
+    }
+    .btn-active:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 0 28px rgba(37, 211, 102, 0.55),
+        0 8px 32px rgba(37, 211, 102, 0.3),
+        inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    .btn-active:active { transform: translateY(0); }
+
+    /* inactive buttons */
+    .btn-inactive {
+      background: var(--surface);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      cursor: not-allowed;
+    }
+    .btn-inactive:hover {
+      border-color: rgba(134,59,255,0.3);
+      color: rgba(240,236,255,0.6);
+    }
+
+    /* GBT app / orange button — matches the app & landing page brand accent */
+    .btn-gbt {
+      background: linear-gradient(135deg, #ffa409 0%, #ff8c2e 100%);
+      color: #1a1002;
+      box-shadow:
+        0 0 16px rgba(255, 164, 9, 0.35),
+        0 4px 24px rgba(255, 164, 9, 0.2),
+        inset 0 1px 0 rgba(255,255,255,0.15);
+    }
+    .btn-gbt:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 0 28px rgba(255, 164, 9, 0.55),
+        0 8px 32px rgba(255, 164, 9, 0.3),
+        inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    .btn-gbt:active { transform: translateY(0); }
+    .btn-gbt .btn-icon { background: rgba(255,255,255,0.2); }
+
+    /* website / purple button */
+    .btn-website {
+      background: linear-gradient(135deg, #863bff 0%, #5b24b5 100%);
+      color: #fff;
+      box-shadow:
+        0 0 16px rgba(134, 59, 255, 0.35),
+        0 4px 24px rgba(134, 59, 255, 0.2),
+        inset 0 1px 0 rgba(255,255,255,0.15);
+    }
+    .btn-website:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 0 28px rgba(134, 59, 255, 0.55),
+        0 8px 32px rgba(134, 59, 255, 0.3),
+        inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    .btn-website:active { transform: translateY(0); }
+    .btn-website .btn-icon { background: rgba(255,255,255,0.15); }
+
+    /* icon container */
+    .btn-icon {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .btn-active .btn-icon   { background: rgba(255,255,255,0.15); }
+    .btn-inactive .btn-icon { background: rgba(255,255,255,0.05); }
+
+    .btn-icon svg { width: 18px; height: 18px; }
+
+    .btn-text { flex: 1; text-align: left; }
+    .btn-label { display: block; line-height: 1.2; }
+    .btn-sub {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      margin-top: 2px;
+      opacity: 0.7;
+    }
+
+    /* "Launching Soon" badge */
+    .badge {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(134,59,255,0.18);
+      color: #c9a8ff;
+      border: 1px solid rgba(134,59,255,0.3);
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    /* ── toast ── */
+    .toast {
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(20, 12, 40, 0.95);
+      border: 1px solid rgba(134,59,255,0.4);
+      color: var(--text);
+      padding: 13px 22px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 20px rgba(134,59,255,0.2);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .toast-icon { font-size: 16px; }
+
+    /* ── WhatsApp fallback modal ── */
+    .wa-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(7,6,15,0.85);
+      backdrop-filter: blur(6px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .wa-overlay.open { display: flex; }
+    .wa-modal {
+      background: #110d22;
+      border: 1px solid rgba(134,59,255,0.35);
+      border-radius: 24px;
+      padding: 32px 28px;
+      max-width: 340px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 0 60px rgba(134,59,255,0.2);
+    }
+    .wa-modal-icon { font-size: 40px; margin-bottom: 12px; }
+    .wa-modal h2 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    .wa-modal p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      line-height: 1.55;
+    }
+    .wa-number {
+      font-size: 20px;
+      font-weight: 700;
+      color: #25d366;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+    .wa-copy-btn {
+      width: 100%;
+      padding: 13px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #25d366 0%, #1dab55 100%);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 12px;
+    }
+    .wa-close-btn {
+      width: 100%;
+      padding: 11px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    /* ── footer ── */
+    .footer {
+      margin-top: 52px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(240,236,255,0.2);
+      letter-spacing: 0.2px;
+    }
+
+    @media (max-width: 400px) {
+      .btn { padding: 14px 18px; }
+      .wordmark { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <div class="brand">
+    <div class="logo-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="46" fill="none" viewBox="0 0 48 46">
+        <path fill="#863bff" d="M25.946 44.938c-.664.845-2.021.375-2.021-.698V33.937a2.26 2.26 0 0 0-2.262-2.262H10.287c-.92 0-1.456-1.04-.92-1.788l7.48-10.471c1.07-1.497 0-3.578-1.842-3.578H1.237c-.92 0-1.456-1.04-.92-1.788L10.013.474c.214-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.471c-1.07 1.498 0 3.579 1.842 3.579h11.377c.943 0 1.473 1.088.89 1.83L25.947 44.94z"/>
+        <mask id="lm" width="48" height="46" x="0" y="0" maskUnits="userSpaceOnUse" style="mask-type:alpha">
+          <path fill="#000" d="M25.842 44.938c-.664.844-2.021.375-2.021-.698V33.937a2.26 2.26 0 0 0-2.262-2.262H10.183c-.92 0-1.456-1.04-.92-1.788l7.48-10.471c1.07-1.498 0-3.579-1.842-3.579H1.133c-.92 0-1.456-1.04-.92-1.787L9.91.473c.214-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.471c-1.07 1.498 0 3.578 1.842 3.578h11.377c.943 0 1.473 1.088.89 1.832L25.843 44.94z"/>
+        </mask>
+        <g mask="url(#lm)">
+          <g filter="url(#lf1)"><ellipse cx="5.508" cy="14.704" fill="#ede6ff" rx="5.508" ry="14.704" transform="matrix(.00324 1 1 -.00324 -4.47 31.516)"/></g>
+          <g filter="url(#lf2)"><ellipse cx="10.399" cy="29.851" fill="#ede6ff" rx="10.399" ry="29.851" transform="matrix(.00324 1 1 -.00324 -39.328 7.883)"/></g>
+          <g filter="url(#lf3)"><ellipse cx="41.412" cy="6.333" fill="#47bfff" rx="5.971" ry="9.665" transform="rotate(37.892 41.412 6.333)"/></g>
+          <g filter="url(#lf4)"><ellipse cx="38.418" cy="32.4" fill="#47bfff" rx="5.971" ry="15.297" transform="rotate(37.892 38.418 32.4)"/></g>
+        </g>
+        <defs>
+          <filter id="lf1" width="60" height="42" x="-20" y="16" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feGaussianBlur stdDeviation="7.659"/></filter>
+          <filter id="lf2" width="90" height="52" x="-55" y="-8" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feGaussianBlur stdDeviation="7.659"/></filter>
+          <filter id="lf3" width="34" height="36" x="25" y="-12" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feGaussianBlur stdDeviation="4.596"/></filter>
+          <filter id="lf4" width="40" height="44" x="19" y="11" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feGaussianBlur stdDeviation="4.596"/></filter>
+        </defs>
+      </svg>
+    </div>
+    <span class="wordmark">grainno</span>
+  </div>
+
+  <p class="tagline">Transform your body.<br>Transform your life.</p>
+
+  <div class="divider"></div>
+
+  <div class="links">
+
+    <!-- 1. Grainno Website (active) -->
+    <a class="btn btn-website" href="https://grainnofoods.com" target="_blank" rel="noopener">
+      <span class="btn-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+      </span>
+      <span class="btn-text">
+        <span class="btn-label">Order Our Products</span>
+        <span class="btn-sub">grainnofoods.com</span>
+      </span>
+    </a>
+
+    <!-- 2. WhatsApp (active) -->
+    <button class="btn btn-active" onclick="openWhatsApp()">
+      <span class="btn-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.12 1.534 5.845L0 24l6.337-1.507A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 0 1-5.001-1.374l-.359-.213-3.712.883.936-3.613-.234-.371A9.808 9.808 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
+        </svg>
+      </span>
+      <span class="btn-text">
+        <span class="btn-label">Join Body Transformation Group</span>
+        <span class="btn-sub">Message us on WhatsApp</span>
+      </span>
+    </button>
+
+    <!-- 3. GBT App (active) -->
+    <a class="btn btn-gbt" href="https://grainnofoods.com/bodytransformation?utm_source=tiktok&utm_medium=linktree" target="_blank" rel="noopener">
+      <span class="btn-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+          <line x1="12" y1="18" x2="12.01" y2="18"/>
+        </svg>
+      </span>
+      <span class="btn-text">
+        <span class="btn-label">GBT App</span>
+        <span class="btn-sub">Grainno Body Transformation</span>
+      </span>
+    </a>
+
+  </div>
+
+  <footer class="footer">
+    &copy; 2025 Grainno Foods &middot; All rights reserved
+  </footer>
+</div>
+
+<div class="toast" id="toast">
+  <span class="toast-icon">⏳</span>
+  We're launching soon — stay tuned!
+</div>
+
+<!-- WhatsApp fallback modal (shown when TikTok browser blocks the link) -->
+<div class="wa-overlay" id="waOverlay" onclick="closeWaModal(event)">
+  <div class="wa-modal">
+    <div class="wa-modal-icon">💬</div>
+    <h2>Open WhatsApp</h2>
+    <p>Your browser couldn't open WhatsApp automatically. Copy the number below and message us directly.</p>
+    <div class="wa-number">+234 816 387 4554</div>
+    <button class="wa-copy-btn" id="waCopyBtn" onclick="copyNumber()">Copy Number</button>
+    <button class="wa-close-btn" onclick="closeWaModal()">Close</button>
+  </div>
+</div>
+
+<script>
+  let toastTimer;
+  function showToast() {
+    const t = document.getElementById('toast');
+    clearTimeout(toastTimer);
+    t.classList.add('show');
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  function openWhatsApp() {
+    const phone = '2348163874554';
+    const text = encodeURIComponent("Hi Grainno! I'd like to join the Body Transformation Group.");
+
+    let appOpened = false;
+
+    // Listen for the page going hidden — means WhatsApp (or another app) launched
+    function onHide() {
+      appOpened = true;
+    }
+    document.addEventListener('visibilitychange', onHide, { once: true });
+
+    // Use native whatsapp:// scheme — works in TikTok browser unlike wa.me
+    window.location.href = 'whatsapp://send?phone=' + phone + '&text=' + text;
+
+    // Fallback: if nothing happened after 1.6s, show the modal
+    setTimeout(function () {
+      document.removeEventListener('visibilitychange', onHide);
+      if (!appOpened) {
+        document.getElementById('waOverlay').classList.add('open');
+      }
+    }, 1600);
+  }
+
+  function closeWaModal(e) {
+    if (!e || e.target === document.getElementById('waOverlay')) {
+      document.getElementById('waOverlay').classList.remove('open');
+    }
+  }
+
+  function copyNumber() {
+    navigator.clipboard.writeText('+2348163874554').then(function () {
+      const btn = document.getElementById('waCopyBtn');
+      btn.textContent = 'Copied!';
+      setTimeout(function () { btn.textContent = 'Copy Number'; }, 2000);
+    }).catch(function () {
+      // Older browsers: select the text manually
+      const btn = document.getElementById('waCopyBtn');
+      btn.textContent = '+2348163874554';
+    });
+  }
+</script>
+
+</body>
+</html>
