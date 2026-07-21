@@ -505,6 +505,30 @@ html, body{background:#0d0d0d;}
   font-size:0.8rem;
   color:var(--ink-muted);
 }
+.gbt-sales .price-timer{
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+  margin-top:0.9rem;
+  padding:0.4rem 0.8rem;
+  background:rgba(255,164,9,0.1);
+  border:1px solid rgba(255,164,9,0.35);
+  border-radius:999px;
+  font-family:var(--font-mono);
+}
+.gbt-sales .price-timer-label{
+  font-size:0.72rem;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  color:var(--ink-muted);
+}
+.gbt-sales .price-timer-clock{
+  font-size:0.95rem;
+  font-weight:600;
+  color:var(--orange);
+  font-variant-numeric:tabular-nums;
+}
+.gbt-sales .price-timer.expired .price-timer-clock{color:var(--ink-muted);}
 .gbt-sales .price-compare{
   margin-top:0.9rem;
   font-size:0.95rem;

@@ -50,6 +50,38 @@
     });
   });
 
+  /* promo countdown — starts on a visitor's first page load and keeps
+     counting down in localStorage, so returning later shows the same
+     deadline rather than a fresh 24 hours */
+  var clock = document.getElementById('gbtPromoClock');
+  if(clock){
+    var STORE_KEY = 'gbtPromoEndsAt';
+    var DURATION = 24 * 60 * 60 * 1000;
+    var endsAt = parseInt(localStorage.getItem(STORE_KEY), 10);
+    if(!endsAt || isNaN(endsAt)){
+      endsAt = Date.now() + DURATION;
+      localStorage.setItem(STORE_KEY, String(endsAt));
+    }
+    function pad(n){ return String(n).padStart(2, '0'); }
+    function renderClock(){
+      var remaining = endsAt - Date.now();
+      if(remaining <= 0){
+        clock.textContent = '00:00:00';
+        var timerEl = document.getElementById('gbtPromoTimer');
+        if(timerEl) timerEl.classList.add('expired');
+        clearInterval(timerInterval);
+        return;
+      }
+      var totalSecs = Math.floor(remaining / 1000);
+      var h = Math.floor(totalSecs / 3600);
+      var m = Math.floor((totalSecs % 3600) / 60);
+      var s = totalSecs % 60;
+      clock.textContent = pad(h) + ':' + pad(m) + ':' + pad(s);
+    }
+    renderClock();
+    var timerInterval = setInterval(renderClock, 1000);
+  }
+
   /* sticky mobile CTA — appears once the hero CTA scrolls out of view */
   var sticky = document.getElementById('gbtStickyCta');
   var heroCta = document.getElementById('gbtHeroCta');

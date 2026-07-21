@@ -266,10 +266,14 @@ fbq('track', 'PageView');
         '<span><s>₦30,000+</s> · one nutritionist consult</span>' .
         '<span><s>₦15,000+</s> · Other edibles that failed</span>'); ?></div>
       <div class="price-card reveal reveal-d1">
-        <span class="price-ribbon" <?php gbt_attr('price.ribbon'); ?>><?php gbt_text('price.ribbon', 'FOUNDING-MEMBER PRICE'); ?></span>
+        <span class="price-ribbon" <?php gbt_attr('price.ribbon'); ?>><?php gbt_text('price.ribbon', 'PROMO PRICE'); ?></span>
         <div class="price-amount" <?php gbt_attr('price.amount'); ?>><?php gbt_text('price.amount', '₦5,000'); ?></div>
         <div class="price-under" <?php gbt_attr('price.under'); ?>><?php gbt_text('price.under', 'per month · cancel anytime'); ?></div>
-        <div class="price-compare" <?php gbt_attr('price.compare'); ?>><?php gbt_text('price.compare', "That's about ₦167 a day. Founding members keep this rate for life; when founding access closes, the price becomes ₦10,000/month."); ?></div>
+        <div class="price-timer" id="gbtPromoTimer" aria-live="polite">
+          <span class="price-timer-label">Promo ends in</span>
+          <span class="price-timer-clock" id="gbtPromoClock">24:00:00</span>
+        </div>
+        <div class="price-compare" <?php gbt_attr('price.compare'); ?>><?php gbt_text('price.compare', "That's about ₦167 a day. This promo price disappears when the timer runs out; after that it's ₦10,000/month."); ?></div>
         <ul class="price-list" <?php gbt_attr('price.list'); ?>><?php gbt_text('price.list',
           '<li>Personal body assessment &amp; exact daily numbers</li>' .
           '<li>Glute, curves, &amp; body toning workouts you can do at home</li>' .
