@@ -76,7 +76,7 @@ fbq('track', 'PageView');
         <h1 <?php gbt_attr('hero.title'); ?>><?php gbt_text('hero.title', 'Sweat in the Parlour. <span class="ankara-text">Shutdown the Party.</span>'); ?></h1>
         <p class="deck" <?php gbt_attr('hero.deck'); ?>><?php gbt_text('hero.deck', 'A body-recomposition app for African women who want to enhance their feminine features. Home workouts. No gym needed.'); ?></p>
         <div class="hero-cta-block">
-          <a class="btn btn-cta" id="gbtHeroCta" href="#pricing" <?php gbt_attr('hero.cta'); ?>><?php gbt_text('hero.cta', 'Begin Your Body Transformation Journey'); ?></a>
+          <a class="btn btn-cta" id="gbtHeroCta" href="<?php echo esc_url($checkout_url); ?>" <?php gbt_attr('hero.cta'); ?>><?php gbt_text('hero.cta', 'Begin Your Body Transformation Journey'); ?></a>
           <p class="cta-note" <?php gbt_attr('hero.note'); ?>><?php gbt_text('hero.note', 'Get a personalised home workout routine tailored to your current body type and size.'); ?></p>
         </div>
       </div>
@@ -334,7 +334,7 @@ fbq('track', 'PageView');
     <div class="wrap">
       <h2 <?php gbt_attr('final.title'); ?>><?php gbt_text('final.title', 'That dress you gave away? <span class="ankara-text">You\'re buying it back.</span>'); ?></h2>
       <p class="lede" <?php gbt_attr('final.lede'); ?>><?php gbt_text('final.lede', 'December parties are only months away, and muscle takes months, not days. The women who shut down December start now: a plan built from your body and your food, in your room.'); ?></p>
-      <a class="btn btn-cta" href="#pricing" <?php gbt_attr('final.cta'); ?>><?php gbt_text('final.cta', "I'm Ready to Transform my Body"); ?></a>
+      <a class="btn btn-cta" href="<?php echo esc_url($checkout_url); ?>" <?php gbt_attr('final.cta'); ?>><?php gbt_text('final.cta', "I'm Ready to Transform my Body"); ?></a>
     </div>
   </section>
 
@@ -347,7 +347,7 @@ fbq('track', 'PageView');
 
   <!-- STICKY MOBILE CTA -->
   <div class="sticky-cta" id="gbtStickyCta">
-    <a class="btn btn-cta" href="#pricing" <?php gbt_attr('sticky.cta'); ?>><?php gbt_text('sticky.cta', 'Start Now'); ?></a>
+    <a class="btn btn-cta" href="<?php echo esc_url($checkout_url); ?>" <?php gbt_attr('sticky.cta'); ?>><?php gbt_text('sticky.cta', 'Start Now'); ?></a>
   </div>
 
 </div>
