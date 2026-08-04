@@ -190,7 +190,6 @@ if ($utm_params) {
       <h2 <?php gbt_attr('motivate.title'); ?>><?php gbt_text('motivate.title', 'The best time to start your body transformation journey was yesterday. The second best time is NOW.'); ?></h2>
       <p <?php gbt_attr('motivate.p1'); ?>><?php gbt_text('motivate.p1', "Ladies who try to begin their body transformation after giving birth would tell you how difficult it gets at that time. Start now, so that in the nearest future you'll only have to maintain what you've built so far."); ?></p>
       <a class="btn btn-cta" href="<?php echo esc_url($checkout_url); ?>" <?php gbt_attr('motivate.cta'); ?>><?php gbt_text('motivate.cta', 'Get Lifetime Access — ₦9,800'); ?></a>
-      <p class="btn-note" <?php gbt_attr('motivate.note'); ?>><?php gbt_text('motivate.note', 'App access sent to your email and WhatsApp after confirmation'); ?></p>
     </div>
   </section>
 
