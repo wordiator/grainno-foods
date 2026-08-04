@@ -52,14 +52,14 @@ if ($utm_params) {
       <span class="eyebrow" <?php gbt_attr('hero.eyebrow'); ?>><?php gbt_text('hero.eyebrow', 'An Anatomist &amp; Body Transformation Coach Reveals'); ?></span>
       <h1 <?php gbt_attr('hero.title'); ?>><?php gbt_text('hero.title', 'How He Helps 9-5 Ladies in Port Harcourt Grow Their Glutes, Build Lower Body, &amp; Get Snatched'); ?></h1>
       <p class="subhead" <?php gbt_attr('hero.subhead'); ?>><?php gbt_text('hero.subhead', 'Without going to the gym, or starving, or wearing waist trainers.'); ?></p>
-      <p class="watchnote" <?php gbt_attr('hero.watchnote'); ?>><?php gbt_text('hero.watchnote', 'Watch this video for the full gist <span class="emoji">👇</span>'); ?></p>
+      <p class="watchnote" <?php gbt_attr('hero.watchnote'); ?>><?php gbt_text('hero.watchnote', 'Watch this video for the full gist'); ?></p>
       <div class="hero-media" <?php gbt_attr('hero.media', true); ?>>
         <div class="play">▶</div>
         <span><?php gbt_text('hero.media.caption', 'VSL video goes here — send the video link or file and it drops straight in.'); ?></span>
       </div>
       <div class="hero-cta-block">
         <a class="btn btn-cta" id="gbtSecretsHeroCta" href="<?php echo esc_url($checkout_url); ?>" <?php gbt_attr('hero.cta'); ?>><?php gbt_text('hero.cta', 'Join Now'); ?></a>
-        <p class="btn-note" <?php gbt_attr('hero.trust'); ?>><?php gbt_text('hero.trust', '<span class="emoji">🔒</span> Secure payment · Instant access · No monthly fees'); ?></p>
+        <p class="btn-note" <?php gbt_attr('hero.trust'); ?>><?php gbt_text('hero.trust', 'Secure payment · Instant access · No monthly fees'); ?></p>
       </div>
     </div>
   </section>
