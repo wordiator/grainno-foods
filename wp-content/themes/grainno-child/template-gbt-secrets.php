@@ -11,22 +11,10 @@
  */
 defined('ABSPATH') || exit;
 
-// TODO: this page sells a one-time ₦9,800 lifetime offer, which is a
-// different price/plan from the ₦5,000/month subscription the checkout
-// endpoint below is wired for. Confirm the real one-time-payment link
-// (Paystack plan) with Julius before launch — the offer= param is a
-// placeholder so the app side can branch on it once that plan exists.
-$checkout_url = add_query_arg('offer', 'secrets', 'https://bodyrecomp.grainnofoods.com/checkout');
-
-$utm_params = [];
-foreach (['utm_source', 'utm_medium', 'utm_campaign'] as $utm_key) {
-    if (!empty($_GET[$utm_key])) {
-        $utm_params[$utm_key] = sanitize_text_field(wp_unslash($_GET[$utm_key]));
-    }
-}
-if ($utm_params) {
-    $checkout_url = add_query_arg($utm_params, $checkout_url);
-}
+// Paystack-hosted Payment Page — proven working (real test payment
+// confirmed correct ₦9,800 one-time pricing), unlike the in-app /checkout
+// flow, which has zero completed payments in its history.
+$checkout_url = 'https://paystack.shop/pay/ntzxc0gpga';
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> class="gbt-secrets-html">

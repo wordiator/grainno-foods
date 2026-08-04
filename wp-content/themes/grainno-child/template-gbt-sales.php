@@ -8,20 +8,12 @@
  */
 defined('ABSPATH') || exit;
 
-$checkout_url = 'https://bodyrecomp.grainnofoods.com/checkout';
-
-// Forward utm_* params from this landing page's own URL (e.g. a TikTok
-// linktree or ads click) onto the checkout link, so attribution survives
-// the hop to the app's subdomain — see /api/checkout/init on the app side.
-$utm_params = [];
-foreach (['utm_source', 'utm_medium', 'utm_campaign'] as $utm_key) {
-    if (!empty($_GET[$utm_key])) {
-        $utm_params[$utm_key] = sanitize_text_field(wp_unslash($_GET[$utm_key]));
-    }
-}
-if ($utm_params) {
-    $checkout_url = add_query_arg($utm_params, $checkout_url);
-}
+// Paystack-hosted Payment Page — proven working (real test payment
+// confirmed correct pricing), unlike the in-app /checkout flow, which has
+// zero completed payments in its history. Paystack's own hosted page
+// doesn't read our utm_* query params, so there's no attribution to
+// forward here the way the in-app checkout could.
+$checkout_url = 'https://paystack.shop/pay/ntzxc0gpga';
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
