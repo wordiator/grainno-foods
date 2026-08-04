@@ -94,11 +94,16 @@ fbq('track', 'PageView');
       <p class="subhead" <?php gbt_attr('hero.subhead'); ?>><?php gbt_text('hero.subhead', 'Without going to the gym, or starving, or wearing waist trainers.'); ?></p>
       <p class="watchnote" <?php gbt_attr('hero.watchnote'); ?>><?php gbt_text('hero.watchnote', 'Watch this video for the full gist'); ?></p>
       <div class="hero-media" <?php gbt_attr('hero.media', true); ?>>
-        <div class="play">▶</div>
-        <span><?php gbt_text('hero.media.caption', 'VSL video goes here — send the video link or file and it drops straight in.'); ?></span>
+        <iframe
+          src="https://www.youtube.com/embed/GfSdAbHn-x0"
+          title="Body transformation VSL"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
       </div>
       <div class="hero-cta-block">
-        <a class="btn btn-cta" id="gbtSecretsHeroCta" href="<?php echo esc_url($checkout_url); ?>" <?php gbt_attr('hero.cta'); ?>><?php gbt_text('hero.cta', 'Join Now'); ?></a>
+        <a class="btn btn-cta" id="gbtSecretsHeroCta" href="<?php echo esc_url($checkout_url); ?>" <?php gbt_attr('hero.cta'); ?>><?php gbt_text('hero.cta', 'Start Body Transformation'); ?></a>
         <p class="btn-note" <?php gbt_attr('hero.trust'); ?>><?php gbt_text('hero.trust', 'Secure payment · Instant access · No monthly fees'); ?></p>
       </div>
     </div>
@@ -169,7 +174,7 @@ fbq('track', 'PageView');
           <div class="label" <?php gbt_attr('stack.pricelabel'); ?>><?php gbt_text('stack.pricelabel', 'Pay Only'); ?></div>
           <div class="amount" <?php gbt_attr('stack.amount'); ?>><?php gbt_text('stack.amount', '₦9,800'); ?></div>
           <p class="note" <?php gbt_attr('stack.note'); ?>><?php gbt_text('stack.note', 'One-time payment. No monthly subscription. No hidden fees. Lifetime access.'); ?></p>
-          <a class="btn btn-cta" href="<?php echo esc_url($checkout_url); ?>" <?php gbt_attr('stack.cta'); ?>><?php gbt_text('stack.cta', 'Get Lifetime Access — ₦9,800'); ?></a>
+          <a class="btn btn-cta" href="<?php echo esc_url($checkout_url); ?>" <?php gbt_attr('stack.cta'); ?>><?php gbt_text('stack.cta', 'Start Body Transformation'); ?></a>
           <p class="stack-timer">
             <span <?php gbt_attr('stack.timerlabel'); ?>><?php gbt_text('stack.timerlabel', 'Promo price locked in for'); ?></span>
             <span class="clock" id="gbtSecretsStackClock" aria-live="polite">02:00:00</span>
@@ -189,7 +194,7 @@ fbq('track', 'PageView');
       <div class="testi-grid">
         <div class="testi-card">
           <div class="stars">★★★★★</div>
-          <q <?php gbt_attr('proof.q1'); ?>><?php gbt_text('proof.q1', 'Omoh... 3-weeks in and my pant is already tighting me. Lovin\' the feeling <span class="emoji">😊</span>'); ?></q>
+          <q <?php gbt_attr('proof.q1'); ?>><?php gbt_text('proof.q1', 'Omoh... 3-weeks in and my pant is already tighting me. Lovin\' the feeling'); ?></q>
           <div class="testi-foot">
             <div class="testi-avatar">C</div>
             <div>
@@ -200,7 +205,7 @@ fbq('track', 'PageView');
         </div>
         <div class="testi-card">
           <div class="stars">★★★★★</div>
-          <q <?php gbt_attr('proof.q2'); ?>><?php gbt_text('proof.q2', 'I love how everything is just structured in a way that makes working out easy and sweet to do. Na who no get update dey go gym<span class="emoji">😂</span>'); ?></q>
+          <q <?php gbt_attr('proof.q2'); ?>><?php gbt_text('proof.q2', 'I love how everything is just structured in a way that makes working out easy and sweet to do. Na who no get update dey go gym'); ?></q>
           <div class="testi-foot">
             <div class="testi-avatar">B</div>
             <div>
@@ -229,7 +234,7 @@ fbq('track', 'PageView');
     <div class="wrap">
       <h2 <?php gbt_attr('motivate.title'); ?>><?php gbt_text('motivate.title', 'The best time to start your body transformation journey was yesterday. The second best time is NOW.'); ?></h2>
       <p <?php gbt_attr('motivate.p1'); ?>><?php gbt_text('motivate.p1', "Ladies who try to begin their body transformation after giving birth would tell you how difficult it gets at that time. Start now, so that in the nearest future you'll only have to maintain what you've built so far."); ?></p>
-      <a class="btn btn-cta" href="<?php echo esc_url($checkout_url); ?>" <?php gbt_attr('motivate.cta'); ?>><?php gbt_text('motivate.cta', 'Get Lifetime Access — ₦9,800'); ?></a>
+      <a class="btn btn-cta" href="<?php echo esc_url($checkout_url); ?>" <?php gbt_attr('motivate.cta'); ?>><?php gbt_text('motivate.cta', 'Start Body Transformation'); ?></a>
     </div>
   </section>
 
@@ -284,7 +289,7 @@ fbq('track', 'PageView');
   <section class="band final-band reveal">
     <div class="wrap">
       <h2 <?php gbt_attr('final.title'); ?>><?php gbt_text('final.title', "Your body is not the problem. Your food is not the problem. You've just never had a plan that was actually built for you."); ?></h2>
-      <a class="btn btn-cta" href="<?php echo esc_url($checkout_url); ?>" <?php gbt_attr('final.cta'); ?>><?php gbt_text('final.cta', 'Start Your Body Transformation — ₦9,800'); ?></a>
+      <a class="btn btn-cta" href="<?php echo esc_url($checkout_url); ?>" <?php gbt_attr('final.cta'); ?>><?php gbt_text('final.cta', 'Start Body Transformation'); ?></a>
       <p class="btn-note" <?php gbt_attr('final.note'); ?>><?php gbt_text('final.note', 'One-time payment · Lifetime access · 30-day money-back guarantee'); ?></p>
     </div>
   </section>
@@ -301,7 +306,7 @@ fbq('track', 'PageView');
   <!-- STICKY CTA BAR -->
   <div class="sticky-cta" id="gbtSecretsStickyCta">
     <span class="info" <?php gbt_attr('sticky.text'); ?>><?php gbt_text('sticky.text', 'Grainno Body Transformation · <strong>₦9,800 lifetime</strong>'); ?></span>
-    <a class="btn btn-cta" href="<?php echo esc_url($checkout_url); ?>" <?php gbt_attr('sticky.cta'); ?>><?php gbt_text('sticky.cta', 'Get Access →'); ?></a>
+    <a class="btn btn-cta" href="<?php echo esc_url($checkout_url); ?>" <?php gbt_attr('sticky.cta'); ?>><?php gbt_text('sticky.cta', 'Start Body Transformation'); ?></a>
   </div>
 
 </div>
