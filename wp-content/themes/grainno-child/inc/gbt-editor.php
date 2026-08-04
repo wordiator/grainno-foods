@@ -13,7 +13,7 @@ defined('ABSPATH') || exit;
 const GBT_HIDDEN_SENTINEL = '__hidden__';
 
 function gbt_editor_templates() {
-    return ['template-gbt-sales.php', 'template-gbt-landing.php'];
+    return ['template-gbt-sales.php', 'template-gbt-landing.php', 'template-gbt-secrets.php'];
 }
 
 function gbt_content_overrides() {

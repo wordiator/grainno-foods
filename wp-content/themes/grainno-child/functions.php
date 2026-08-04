@@ -46,6 +46,23 @@ function grainno_enqueue_assets() {
         return;
     }
 
+    if (is_page_template('template-gbt-secrets.php')) {
+        wp_enqueue_style(
+            'gbt-secrets-style',
+            get_stylesheet_directory_uri() . '/gbt-secrets/style.css',
+            [],
+            filemtime(get_stylesheet_directory() . '/gbt-secrets/style.css')
+        );
+        wp_enqueue_script(
+            'gbt-secrets-script',
+            get_stylesheet_directory_uri() . '/gbt-secrets/script.js',
+            [],
+            filemtime(get_stylesheet_directory() . '/gbt-secrets/script.js'),
+            true
+        );
+        return;
+    }
+
     if (is_page_template('template-gbt-landing.php')) {
         wp_enqueue_style(
             'gbt-landing-fonts',
@@ -130,11 +147,11 @@ add_action('wp_enqueue_scripts', 'grainno_enqueue_assets');
    and plugins force onto them (storefront, woocommerce, main site style.css),
    keeping only GBT assets and the logged-in admin bar. */
 function grainno_gbt_style_isolation() {
-    if (!is_page_template(['template-gbt-sales.php', 'template-gbt-landing.php'])) {
+    if (!is_page_template(['template-gbt-sales.php', 'template-gbt-landing.php', 'template-gbt-secrets.php'])) {
         return;
     }
     $keep = [
-        'gbt-landing-fonts', 'gbt-landing-style', 'gbt-sales-style',
+        'gbt-landing-fonts', 'gbt-landing-style', 'gbt-sales-style', 'gbt-secrets-style',
         'gbt-editor', 'admin-bar', 'dashicons', 'cookieadmin-style',
     ];
     foreach ((array) wp_styles()->queue as $handle) {
@@ -150,11 +167,11 @@ add_action('wp_print_styles', 'grainno_gbt_style_isolation', 999);
 /* Final gate: some plugins (WooCommerce blocks) re-enqueue styles through paths
    the queue sweep can't reach, so filter the printed tag itself. */
 add_filter('style_loader_tag', function ($tag, $handle) {
-    if (!is_page_template(['template-gbt-sales.php', 'template-gbt-landing.php'])) {
+    if (!is_page_template(['template-gbt-sales.php', 'template-gbt-landing.php', 'template-gbt-secrets.php'])) {
         return $tag;
     }
     $keep = [
-        'gbt-landing-fonts', 'gbt-landing-style', 'gbt-sales-style',
+        'gbt-landing-fonts', 'gbt-landing-style', 'gbt-sales-style', 'gbt-secrets-style',
         'gbt-editor', 'admin-bar', 'dashicons', 'cookieadmin-style',
     ];
     return in_array($handle, $keep, true) ? $tag : '';
