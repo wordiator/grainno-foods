@@ -52,14 +52,14 @@ if ($utm_params) {
       <span class="eyebrow" <?php gbt_attr('hero.eyebrow'); ?>><?php gbt_text('hero.eyebrow', 'An Anatomist &amp; Body Transformation Coach Reveals'); ?></span>
       <h1 <?php gbt_attr('hero.title'); ?>><?php gbt_text('hero.title', 'How He Helps 9-5 Ladies in Port Harcourt Grow Their Glutes, Build Lower Body, &amp; Get Snatched'); ?></h1>
       <p class="subhead" <?php gbt_attr('hero.subhead'); ?>><?php gbt_text('hero.subhead', 'Without going to the gym, or starving, or wearing waist trainers.'); ?></p>
-      <p class="watchnote" <?php gbt_attr('hero.watchnote'); ?>><?php gbt_text('hero.watchnote', 'Watch this video for the full gist 👇'); ?></p>
+      <p class="watchnote" <?php gbt_attr('hero.watchnote'); ?>><?php gbt_text('hero.watchnote', 'Watch this video for the full gist <span class="emoji">👇</span>'); ?></p>
       <div class="hero-media" <?php gbt_attr('hero.media', true); ?>>
         <div class="play">▶</div>
         <span><?php gbt_text('hero.media.caption', 'VSL video goes here — send the video link or file and it drops straight in.'); ?></span>
       </div>
       <div class="hero-cta-block">
         <a class="btn btn-cta" id="gbtSecretsHeroCta" href="<?php echo esc_url($checkout_url); ?>" <?php gbt_attr('hero.cta'); ?>><?php gbt_text('hero.cta', 'Join Now'); ?></a>
-        <p class="btn-note" <?php gbt_attr('hero.trust'); ?>><?php gbt_text('hero.trust', '🔒 Secure payment · Instant access · No monthly fees'); ?></p>
+        <p class="btn-note" <?php gbt_attr('hero.trust'); ?>><?php gbt_text('hero.trust', '<span class="emoji">🔒</span> Secure payment · Instant access · No monthly fees'); ?></p>
       </div>
     </div>
   </section>
@@ -149,7 +149,7 @@ if ($utm_params) {
       <div class="testi-grid">
         <div class="testi-card">
           <div class="stars">★★★★★</div>
-          <q <?php gbt_attr('proof.q1'); ?>><?php gbt_text('proof.q1', "Omoh... 3-weeks in and my pant is already tighting me. Lovin' the feeling 😊"); ?></q>
+          <q <?php gbt_attr('proof.q1'); ?>><?php gbt_text('proof.q1', 'Omoh... 3-weeks in and my pant is already tighting me. Lovin\' the feeling <span class="emoji">😊</span>'); ?></q>
           <div class="testi-foot">
             <div class="testi-avatar">C</div>
             <div>
@@ -160,7 +160,7 @@ if ($utm_params) {
         </div>
         <div class="testi-card">
           <div class="stars">★★★★★</div>
-          <q <?php gbt_attr('proof.q2'); ?>><?php gbt_text('proof.q2', 'I love how everything is just structured in a way that makes working out easy and sweet to do. Na who no get update dey go gym😂'); ?></q>
+          <q <?php gbt_attr('proof.q2'); ?>><?php gbt_text('proof.q2', 'I love how everything is just structured in a way that makes working out easy and sweet to do. Na who no get update dey go gym<span class="emoji">😂</span>'); ?></q>
           <div class="testi-foot">
             <div class="testi-avatar">B</div>
             <div>

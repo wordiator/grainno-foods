@@ -480,3 +480,14 @@ html.gbt-secrets-html, body.gbt-secrets-html{background:#fff;}
   .gbt-secrets *{scroll-behavior:auto !important;}
 }
 .gbt-secrets :focus-visible{outline:2px solid var(--gold-deep);outline-offset:2px;}
+
+/* inline emoji in running copy render taller than the surrounding glyphs in
+   color-emoji fonts (Apple Color Emoji, Noto Color Emoji, Segoe UI Emoji) —
+   scale down and nudge baseline so they read as part of the sentence, not a
+   stray oversized icon. Doesn't apply to the ✓ / ✕ / ★ marks, which are
+   separate icon badges styled and sized on their own. */
+.gbt-secrets .emoji{
+  font-size:0.85em;
+  vertical-align:-0.08em;
+  line-height:1;
+}
