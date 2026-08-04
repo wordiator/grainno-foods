@@ -16,7 +16,7 @@ defined('ABSPATH') || exit;
 // endpoint below is wired for. Confirm the real one-time-payment link
 // (Paystack plan) with Julius before launch — the offer= param is a
 // placeholder so the app side can branch on it once that plan exists.
-$checkout_url = add_query_arg('offer', 'secrets', 'https://gbt.grainnofoods.com/checkout');
+$checkout_url = add_query_arg('offer', 'secrets', 'https://bodyrecomp.grainnofoods.com/checkout');
 
 $utm_params = [];
 foreach (['utm_source', 'utm_medium', 'utm_campaign'] as $utm_key) {

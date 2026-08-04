@@ -29,7 +29,7 @@ $wa_support_url = 'https://wa.me/' . $wa_number;
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a class="btn btn-primary nav-cta" href="https://gbt.grainnofoods.com/quiz">Start the Quiz →</a>
+      <a class="btn btn-primary nav-cta" href="https://bodyrecomp.grainnofoods.com/quiz">Start the Quiz →</a>
       <button class="nav-burger" id="burger" aria-expanded="false" aria-controls="mobileNav" aria-label="Toggle menu">
         <svg id="burgerIcon" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="1" y1="4" x2="17" y2="4"/><line x1="1" y1="9" x2="17" y2="9"/><line x1="1" y1="14" x2="17" y2="14"/></svg>
       </button>
@@ -40,7 +40,7 @@ $wa_support_url = 'https://wa.me/' . $wa_number;
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
-      <a class="btn btn-primary" style="justify-content:center" href="https://gbt.grainnofoods.com/quiz">Start the Quiz →</a>
+      <a class="btn btn-primary" style="justify-content:center" href="https://bodyrecomp.grainnofoods.com/quiz">Start the Quiz →</a>
     </div>
   </header>
 
@@ -52,8 +52,8 @@ $wa_support_url = 'https://wa.me/' . $wa_number;
         <h1>Finally, a meal plan that speaks <em>Jollof.</em></h1>
         <p class="lede">Grainno Body Transformation turns your body goal into a personalized calorie target, a meal plan built from the food you already eat, and a workout plan you'll actually follow — no foreign diets, no guesswork, no gym-bro jargon.</p>
         <div class="hero-ctas">
-          <a class="btn btn-primary" href="https://gbt.grainnofoods.com/quiz">Start the Quiz →</a>
-          <a class="btn btn-ghost" href="https://gbt.grainnofoods.com">Explore the Tools</a>
+          <a class="btn btn-primary" href="https://bodyrecomp.grainnofoods.com/quiz">Start the Quiz →</a>
+          <a class="btn btn-ghost" href="https://bodyrecomp.grainnofoods.com">Explore the Tools</a>
         </div>
         <div class="trust-strip">
           <span>100% Free</span><span>No Downloads</span><span>African Foods</span><span>Takes 5 Minutes</span>
@@ -318,7 +318,7 @@ $wa_support_url = 'https://wa.me/' . $wa_number;
       <h2>Your body goal, <em>translated.</em></h2>
       <p class="lede">Take the quiz, get your numbers, and build a plan from food you already know how to cook.</p>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="https://gbt.grainnofoods.com/quiz">Start the Quiz →</a>
+        <a class="btn btn-primary" href="https://bodyrecomp.grainnofoods.com/quiz">Start the Quiz →</a>
       </div>
     </div>
   </section>
@@ -332,8 +332,8 @@ $wa_support_url = 'https://wa.me/' . $wa_number;
           <p style="margin-top:0.7rem;color:var(--ink-faint);font-size:0.88rem;max-width:24rem;">Grainno Body Transformation — a product of Grainno Foods.</p>
         </div>
         <div class="footer-links">
-          <a href="https://gbt.grainnofoods.com/quiz">Start the Quiz</a>
-          <a href="https://gbt.grainnofoods.com">Explore the Tools</a>
+          <a href="https://bodyrecomp.grainnofoods.com/quiz">Start the Quiz</a>
+          <a href="https://bodyrecomp.grainnofoods.com">Explore the Tools</a>
           <a href="<?php echo esc_url(home_url('/')); ?>">Grainnofoods.com</a>
           <a href="<?php echo esc_url($wa_support_url); ?>" target="_blank" rel="noopener">WhatsApp Support</a>
         </div>

@@ -8,7 +8,7 @@
  */
 defined('ABSPATH') || exit;
 
-$checkout_url = 'https://gbt.grainnofoods.com/checkout';
+$checkout_url = 'https://bodyrecomp.grainnofoods.com/checkout';
 
 // Forward utm_* params from this landing page's own URL (e.g. a TikTok
 // linktree or ads click) onto the checkout link, so attribution survives
