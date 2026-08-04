@@ -487,7 +487,7 @@ html.gbt-secrets-html, body.gbt-secrets-html{background:#fff;}
    stray oversized icon. Doesn't apply to the ✓ / ✕ / ★ marks, which are
    separate icon badges styled and sized on their own. */
 .gbt-secrets .emoji{
-  font-size:0.85em;
-  vertical-align:-0.08em;
+  font-size:0.7em;
+  vertical-align:0.02em;
   line-height:1;
 }
