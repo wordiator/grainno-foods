@@ -11,10 +11,31 @@
  */
 defined('ABSPATH') || exit;
 
-// Paystack-hosted Payment Page — proven working (real test payment
-// confirmed correct ₦9,800 one-time pricing), unlike the in-app /checkout
-// flow, which has zero completed payments in its history.
-$checkout_url = 'https://paystack.shop/pay/ntzxc0gpga';
+// Goes through the app's own /checkout page first (captures name/email/
+// WhatsApp so abandoned checkouts are visible in the admin leads view),
+// which then hands off to the proven Paystack-hosted Payment Page itself.
+$checkout_url = 'https://bodyrecomp.grainnofoods.com/checkout';
+
+// Forward utm_* params from this landing page's own URL onto the checkout
+// link, so attribution survives the hop to the app's subdomain and ends up
+// on the captured lead.
+$utm_params = [];
+foreach (['utm_source', 'utm_medium', 'utm_campaign'] as $utm_key) {
+    if (!empty($_GET[$utm_key])) {
+        $utm_params[$utm_key] = sanitize_text_field(wp_unslash($_GET[$utm_key]));
+    }
+}
+if ($utm_params) {
+    $checkout_url = add_query_arg($utm_params, $checkout_url);
+}
+
+// Meta and TikTok pixels must stay isolated from each other on this page —
+// both ads run to the same URL, only utm_source tells them apart. A TikTok
+// click firing the Meta pixel (or vice versa) would pollute that platform's
+// own ad-optimization data with traffic it didn't actually drive. Default
+// (no utm_source, or anything other than 'tiktok') assumes Facebook/organic,
+// matching how the Meta pixel behaved unconditionally before this moved here.
+$is_tiktok_traffic = isset($_GET['utm_source']) && strtolower(sanitize_text_field(wp_unslash($_GET['utm_source']))) === 'tiktok';
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> class="gbt-secrets-html">
@@ -22,6 +43,37 @@ $checkout_url = 'https://paystack.shop/pay/ntzxc0gpga';
 <meta charset="<?php bloginfo('charset'); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?php wp_head(); ?>
+
+<?php if ($is_tiktok_traffic) : ?>
+<!-- TikTok Pixel Code Start -->
+<script>
+!function (w, d, t) {
+  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+
+
+  ttq.load('D9DURFRC77U9058HLVKG');
+  ttq.page();
+}(window, document, 'ttq');
+</script>
+<!-- TikTok Pixel Code End -->
+<?php else : ?>
+<!-- Meta Pixel Code Start -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '970279466048946');
+fbq('track', 'PageView');
+</script>
+<!-- Meta Pixel Code End -->
+<?php endif; ?>
 </head>
 <body <?php body_class('gbt-secrets-html'); ?>>
 <?php wp_body_open(); ?>

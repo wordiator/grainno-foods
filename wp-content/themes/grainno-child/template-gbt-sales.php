@@ -8,12 +8,23 @@
  */
 defined('ABSPATH') || exit;
 
-// Paystack-hosted Payment Page — proven working (real test payment
-// confirmed correct pricing), unlike the in-app /checkout flow, which has
-// zero completed payments in its history. Paystack's own hosted page
-// doesn't read our utm_* query params, so there's no attribution to
-// forward here the way the in-app checkout could.
-$checkout_url = 'https://paystack.shop/pay/ntzxc0gpga';
+// Goes through the app's own /checkout page first (captures name/email/
+// WhatsApp so abandoned checkouts are visible in the admin leads view),
+// which then hands off to the proven Paystack-hosted Payment Page itself.
+$checkout_url = 'https://bodyrecomp.grainnofoods.com/checkout';
+
+// Forward utm_* params from this landing page's own URL (e.g. a TikTok
+// linktree or ads click) onto the checkout link, so attribution survives
+// the hop to the app's subdomain and ends up on the captured lead.
+$utm_params = [];
+foreach (['utm_source', 'utm_medium', 'utm_campaign'] as $utm_key) {
+    if (!empty($_GET[$utm_key])) {
+        $utm_params[$utm_key] = sanitize_text_field(wp_unslash($_GET[$utm_key]));
+    }
+}
+if ($utm_params) {
+    $checkout_url = add_query_arg($utm_params, $checkout_url);
+}
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -36,20 +47,6 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 </script>
 <!-- TikTok Pixel Code End -->
 
-<!-- Meta Pixel Code Start -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '970279466048946');
-fbq('track', 'PageView');
-</script>
-<!-- Meta Pixel Code End -->
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
