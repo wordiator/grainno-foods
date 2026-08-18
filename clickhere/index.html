@@ -401,27 +401,13 @@
         </svg>
       </span>
       <span class="btn-text">
-        <span class="btn-label">Order Our Products</span>
-        <span class="btn-sub">grainnofoods.com</span>
+        <span class="btn-label">Buy Tom Brown &amp; Protein Powder</span>
+        <span class="btn-sub">Tap to order on grainnofoods.com</span>
       </span>
     </a>
 
-    <!-- 2. WhatsApp (active) -->
-    <button class="btn btn-active" onclick="openWhatsApp()">
-      <span class="btn-icon">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
-          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.12 1.534 5.845L0 24l6.337-1.507A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 0 1-5.001-1.374l-.359-.213-3.712.883.936-3.613-.234-.371A9.808 9.808 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
-        </svg>
-      </span>
-      <span class="btn-text">
-        <span class="btn-label">Join Body Transformation Group</span>
-        <span class="btn-sub">Message us on WhatsApp</span>
-      </span>
-    </button>
-
-    <!-- 3. GBT App (active) -->
-    <a class="btn btn-gbt" href="https://grainnofoods.com/bodytransformation?utm_source=tiktok&utm_medium=linktree" target="_blank" rel="noopener">
+    <!-- 2. GBT App (active) -->
+    <a class="btn btn-gbt" href="https://grainnofoods.com/bodytransformationsecrets/?utm_source=tiktok&utm_medium=linktree" target="_blank" rel="noopener">
       <span class="btn-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
@@ -429,7 +415,7 @@
         </svg>
       </span>
       <span class="btn-text">
-        <span class="btn-label">GBT App</span>
+        <span class="btn-label">Begin Your Body Transformation</span>
         <span class="btn-sub">Grainno Body Transformation</span>
       </span>
     </a>
@@ -440,75 +426,6 @@
     &copy; 2025 Grainno Foods &middot; All rights reserved
   </footer>
 </div>
-
-<div class="toast" id="toast">
-  <span class="toast-icon">⏳</span>
-  We're launching soon — stay tuned!
-</div>
-
-<!-- WhatsApp fallback modal (shown when TikTok browser blocks the link) -->
-<div class="wa-overlay" id="waOverlay" onclick="closeWaModal(event)">
-  <div class="wa-modal">
-    <div class="wa-modal-icon">💬</div>
-    <h2>Open WhatsApp</h2>
-    <p>Your browser couldn't open WhatsApp automatically. Copy the number below and message us directly.</p>
-    <div class="wa-number">+234 816 387 4554</div>
-    <button class="wa-copy-btn" id="waCopyBtn" onclick="copyNumber()">Copy Number</button>
-    <button class="wa-close-btn" onclick="closeWaModal()">Close</button>
-  </div>
-</div>
-
-<script>
-  let toastTimer;
-  function showToast() {
-    const t = document.getElementById('toast');
-    clearTimeout(toastTimer);
-    t.classList.add('show');
-    toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
-  }
-
-  function openWhatsApp() {
-    const phone = '2348163874554';
-    const text = encodeURIComponent("Hi Grainno! I'd like to join the Body Transformation Group.");
-
-    let appOpened = false;
-
-    // Listen for the page going hidden — means WhatsApp (or another app) launched
-    function onHide() {
-      appOpened = true;
-    }
-    document.addEventListener('visibilitychange', onHide, { once: true });
-
-    // Use native whatsapp:// scheme — works in TikTok browser unlike wa.me
-    window.location.href = 'whatsapp://send?phone=' + phone + '&text=' + text;
-
-    // Fallback: if nothing happened after 1.6s, show the modal
-    setTimeout(function () {
-      document.removeEventListener('visibilitychange', onHide);
-      if (!appOpened) {
-        document.getElementById('waOverlay').classList.add('open');
-      }
-    }, 1600);
-  }
-
-  function closeWaModal(e) {
-    if (!e || e.target === document.getElementById('waOverlay')) {
-      document.getElementById('waOverlay').classList.remove('open');
-    }
-  }
-
-  function copyNumber() {
-    navigator.clipboard.writeText('+2348163874554').then(function () {
-      const btn = document.getElementById('waCopyBtn');
-      btn.textContent = 'Copied!';
-      setTimeout(function () { btn.textContent = 'Copy Number'; }, 2000);
-    }).catch(function () {
-      // Older browsers: select the text manually
-      const btn = document.getElementById('waCopyBtn');
-      btn.textContent = '+2348163874554';
-    });
-  }
-</script>
 
 </body>
 </html>
