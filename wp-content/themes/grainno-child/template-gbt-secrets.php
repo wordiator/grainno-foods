@@ -11,23 +11,14 @@
  */
 defined('ABSPATH') || exit;
 
-// Goes through the app's own /checkout page first (captures name/email/
-// WhatsApp so abandoned checkouts are visible in the admin leads view),
-// which then hands off to the proven Paystack-hosted Payment Page itself.
-$checkout_url = 'https://bodyrecomp.grainnofoods.com/checkout';
-
-// Forward utm_* params from this landing page's own URL onto the checkout
-// link, so attribution survives the hop to the app's subdomain and ends up
-// on the captured lead.
-$utm_params = [];
-foreach (['utm_source', 'utm_medium', 'utm_campaign'] as $utm_key) {
-    if (!empty($_GET[$utm_key])) {
-        $utm_params[$utm_key] = sanitize_text_field(wp_unslash($_GET[$utm_key]));
-    }
-}
-if ($utm_params) {
-    $checkout_url = add_query_arg($utm_params, $checkout_url);
-}
+// Links straight to Paystack's own hosted Payment Page (2026-08-19) — no
+// more app /checkout page in between. That page's Inline popup was failing
+// silently inside TikTok/Facebook/Instagram in-app browsers (exactly this
+// page's traffic), killing conversion; a real top-level navigation works
+// everywhere. Trade-off accepted: no UTM/campaign attribution survives onto
+// the sale or a lead record anymore, since Paystack's page doesn't accept
+// our metadata and nothing captures a lead before payment now.
+$checkout_url = 'https://paystack.shop/pay/ntzxc0gpga';
 
 // Meta and TikTok pixels must stay isolated from each other on this page —
 // both ads run to the same URL, only utm_source tells them apart. A TikTok
