@@ -23,6 +23,18 @@ require_once get_stylesheet_directory() . '/inc/gbt-editor.php';
    ENQUEUE FONTS & SCRIPTS
    ============================================================ */
 function grainno_enqueue_assets() {
+    // Site-wide, in <head>, before every early-return below: capture the
+    // landing URL's utm_* / click ids into a .grainnofoods.com cookie so
+    // the app subdomain can forward them onto the sale (Paystack's hosted
+    // page loses them). See assets/js/attribution.js.
+    wp_enqueue_script(
+        'gbt-attribution',
+        get_stylesheet_directory_uri() . '/assets/js/attribution.js',
+        [],
+        filemtime(get_stylesheet_directory() . '/assets/js/attribution.js'),
+        false
+    );
+
     if (is_page_template('template-gbt-sales.php')) {
         wp_enqueue_style(
             'gbt-landing-fonts',
